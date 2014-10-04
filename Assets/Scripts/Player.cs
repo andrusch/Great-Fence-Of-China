@@ -53,7 +53,7 @@ public class Player : Piece {
 
     public bool TryMove(int newX, int newY)
     {
-        if (newY + this.Y < 5 && newY + this.Y > -1)
+        if (newY + this.Y < GameEngine.Instance.BoardHeight && newY + this.Y > -1)
         {
             this.Y += newY;
             return true;

@@ -7,7 +7,6 @@ public class GameEngine : MonoBehaviour {
 	
 	private List<Fence> _fencePieces;
 	private List<Enemy> _enemies;
-	private Player _player;
 	public int TotalSheepInLevel;
 	public int TotalSheepKilledInAllLevels;
 	public int MaxSheepOnBoardAtOnce;
@@ -32,7 +31,7 @@ public class GameEngine : MonoBehaviour {
 	{
 		this.Level = 1;
 		this.BoardHeight = 5;
-		this.BoardWidth = 13;
+		this.BoardWidth = 9;
 		this._fencePieces = new List<Fence>();
 		this._enemies = new List<Enemy>();
 		this._sheepAdded = 0;
@@ -45,40 +44,18 @@ public class GameEngine : MonoBehaviour {
 	void Update () 
 	{	
 		AddEnemy();
-		System.Threading.Thread.Sleep(1000);
+		//System.Threading.Thread.Sleep(1000);
 		foreach (Enemy e in _enemies)
 		{
 			e.Move();
-		}
-	}
-	
-	void OnGUI()
-	{		
-		if (this == null)
-			Debug.LogError("CANNOT FIND MY PARENT");
-		else
-		{
-			Vector2 targetPos;
-			Rect cameraRect = Camera.main.pixelRect;
-			
-			if (this.IsLevelOver())
-			{
-				if (this.DidIWin())
-					GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "You Win! " + this.TotalSheepKilledInAllLevels.ToString());
-				else 
-					GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "You Lose! " + this.TotalSheepKilledInAllLevels.ToString());
-			}
-			else
-			{
-				GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "Your Score Is: " + this.TotalSheepKilledInAllLevels.ToString());
-			}
 		}
 	}
 	void AddEnemy() 
 	{
 		if (_enemies.Count < MaxSheepOnBoardAtOnce && _sheepAdded < TotalSheepInLevel)
 		{
-			Enemy e = new Enemy();
+            GameObject eGO = GameObject.Instantiate(SheepPrefab, new Vector3((float)(-9*1.28), 0), Quaternion.identity) as GameObject;
+			Enemy e = eGO.GetComponent<Enemy>();
 			e.X = 0;
 			e.Y = GenerateYForEnemy();
 			_enemies.Add(e);
@@ -120,6 +97,7 @@ public class GameEngine : MonoBehaviour {
 	}
 	bool DidIWin()
 	{
-		return IsLevelOver() && this._player.Health > 0;
+		//return IsLevelOver() && this._player.Health > 0;
+        return IsLevelOver();
 	}
 }
