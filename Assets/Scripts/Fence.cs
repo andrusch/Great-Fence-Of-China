@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Fence : MonoBehaviour {
+public class Fence : Piece {
 	public int Health;
 	public int Shielding;
-	public int x;
-	public int y;
 	public int HealthIncrease;
 	public int ClickBonus;
 	public int OverlayCount;
@@ -28,12 +26,10 @@ public class Fence : MonoBehaviour {
 	}
 	public void TakeDamage(int damage)
 	{
-		if (damage > Shielding) {
-
+		if (damage > Shielding) 
+		{
 			this.Health -= damage + Shielding;
-			 
 		} 
-
 	}
 	public void UpdateImage()
 	{
@@ -56,7 +52,7 @@ public class Fence : MonoBehaviour {
 	}
 	public void Explode()
 	{
-
+		// add animation for the explosion
 	}
 	public void AddHealth(bool addBonus)
 	{

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameEngine : MonoBehaviour {
-	private Object[,] _grid;
+	private Piece[,] _grid;
 	
 	private List<Fence> _fencePieces;
 	private List<Enemy> _enemies;
@@ -35,11 +35,10 @@ public class GameEngine : MonoBehaviour {
 		this.BoardWidth = 13;
 		this._fencePieces = new List<Fence>();
 		this._enemies = new List<Enemy>();
-		this._player = new Player();
 		this._sheepAdded = 0;
 		this.TotalSheepInLevel = 10 * this.Level;
 		this.MaxSheepOnBoardAtOnce = 1;
-		this._grid = new Object[this.BoardHeight, this.BoardWidth];
+		this._grid = new Piece[this.BoardHeight, this.BoardWidth];
 		this._enemyCountPerRow = new int[this.BoardHeight];
 	}
 	// Update is called once per frame
@@ -80,10 +79,10 @@ public class GameEngine : MonoBehaviour {
 		if (_enemies.Count < MaxSheepOnBoardAtOnce && _sheepAdded < TotalSheepInLevel)
 		{
 			Enemy e = new Enemy();
-			e.x = 0;
-			e.y = GenerateYForEnemy();
+			e.X = 0;
+			e.Y = GenerateYForEnemy();
 			_enemies.Add(e);
-			_enemyCountPerRow[e.y]++;
+			_enemyCountPerRow[e.Y]++;
 			_sheepAdded++;
 		}
 	}
@@ -123,8 +122,4 @@ public class GameEngine : MonoBehaviour {
 	{
 		return IsLevelOver() && this._player.Health > 0;
 	}
-	/*bool TryMove(Object piece, int x, int y)
-	{
-		
-	}*/
 }

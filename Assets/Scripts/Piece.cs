@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Piece : MonoBehaviour {
-
+	public int X;
+	public int Y;
 	// Use this for initialization
 	void Start () {
 	
@@ -12,5 +13,8 @@ public class Piece : MonoBehaviour {
 	void Update () {
 	
 	}
-	
+	protected void Move(int x, int y)
+	{
+		
+	}
 }

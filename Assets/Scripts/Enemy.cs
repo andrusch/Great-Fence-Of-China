@@ -2,11 +2,9 @@
 using System.Collections;
 using System.Threading;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : Piece {
 	public int Power;
 	public int Speed;
-	public int x;
-	public int y;
 	public bool DoesStun;
 	// Use this for initialization
 	void Start () {
@@ -24,7 +22,8 @@ public class Enemy : MonoBehaviour {
 
 	public void Move()
 	{
-		x++;
+		this.X++;
+		this.Move (X,Y);
 	}
 
 	public void Explode()

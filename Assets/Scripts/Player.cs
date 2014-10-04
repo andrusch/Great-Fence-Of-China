@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
-	public int x;
-	public int y;
+public class Player : Piece {
+
 	public int Health;
 	public float xMargin = 1f;		// Distance in the x axis the  can move before the camera follows.
 	public float yMargin = 1f;		// Distance in the y axis the focus can move before the camera follows.
@@ -27,66 +26,51 @@ public class Player : MonoBehaviour {
 	
 	void FixedUpdate() 
 	{
-
-				float h = Input.GetAxisRaw("Horizontal");
-				float v = Input.GetAxisRaw("Vertical");
-				float tempX = this.x;
-				float tempY = this.y;
-				if( h != 0.0f)
-				{
-					if(m_isHoriAxisInUse == false)
-					{
-						if  (((tempX+h) < maxXAndY.x) && ((tempX+h) > minXAndY.x))
-							tempX += h;
-						m_isHoriAxisInUse = true;
-					}
-				}
-				if( h == 0.0f)
-				{
-					m_isHoriAxisInUse = false;
-				} 
-				if( v != 0.0f)
-				{
-					if(m_isVertAxisInUse == false)
-					{
-						if  (((tempY+v) < maxXAndY.y) && ((tempY+v) > minXAndY.y))
-							tempY += v;
-						m_isVertAxisInUse = true;
-					}
-				}
-				if( v == 0.0f)
-				{
-					m_isVertAxisInUse = false;
-				} 
-				Vector2 tempVector = new Vector2(tempX,tempY);
-				//Debug.LogError("testing...");
-				
-				if (tempX != this.x || tempY != this.y)
-				{
-					/*if (this.TryMove((int)tempX, (int)tempY))
-					{
-						gameObject.transform.position = tempVector;
-					}*/
-				}
+		float h = Input.GetAxisRaw("Horizontal");
+		float v = Input.GetAxisRaw("Vertical");
+		float tempX = this.X;
+		float tempY = this.Y;
+		if( h != 0.0f)
+		{
+			if(m_isHoriAxisInUse == false)
+			{
+				if  (((tempX+h) < maxXAndY.x) && ((tempX+h) > minXAndY.x))
+					tempX += h;
+				m_isHoriAxisInUse = true;
+			}
+		}
+		if( h == 0.0f)
+		{
+			m_isHoriAxisInUse = false;
+		} 
+		if( v != 0.0f)
+		{
+			if(m_isVertAxisInUse == false)
+			{
+				if  (((tempY+v) < maxXAndY.y) && ((tempY+v) > minXAndY.y))
+					tempY += v;
+				m_isVertAxisInUse = true;
+			}
+		}
+		if( v == 0.0f)
+		{
+			m_isVertAxisInUse = false;
+		} 
+		Vector2 tempVector = new Vector2(tempX,tempY);
+		//Debug.LogError("testing...");
+		
+		if (tempX != this.X || tempY != this.Y)
+		{
+			if (this.TryMove((int)tempX, (int)tempY))
+			{
+				gameObject.transform.position = tempVector;
+			}
+		}
 	}
 	
-	void OnGUI()
-	{		
-		if (this == null)
-			Debug.LogError("CANNOT FIND MY PARENT");
-		//else if (.instance.IsPlayerTurn)
-		//{
-			Vector2 targetPos;
-			targetPos = Camera.main.WorldToScreenPoint (new Vector3(this.x, this.y, transform.position.z));
-			//GUI.Box(new Rect(targetPos.x-40, Screen.height- targetPos.y - 50, 75, 20), "Your Move");
-		//}
-		/*else
-		{
-			Vector2 targetPos;
-			targetPos = Camera.main.WorldToScreenPoint (new Vector3(this.x, this.y, transform.position.z));
-			GUI.Box(new Rect(targetPos.x-60, Screen.height- targetPos.y - 50, 115, 20), "Computer's Move");
-		}*/
-		
+	public bool TryMove(int newX, int newY)
+	{
+			return true;
 	}
 	
 	public void Move(int newStartX, int newStartY)
