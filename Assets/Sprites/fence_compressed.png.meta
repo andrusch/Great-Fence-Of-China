@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 050113628fd6a4fdb9b36286b41b2cf4
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: fence_compressed
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
