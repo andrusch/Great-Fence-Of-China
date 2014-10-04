@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Threading;
 
 public class Enemy : MonoBehaviour {
 	public int Power;
 	public int Speed;
+	public int x;
+	public int y;
 	public bool DoesStun;
-	public int x
-	public int y
 	// Use this for initialization
 	void Start () {
 		this.Power = 1;
 		this.DoesStun = false;
-		this.Speed = 1;
+		this.Speed = 1000;
+		
 	}
 	
 	// Update is called once per frame
@@ -22,7 +24,7 @@ public class Enemy : MonoBehaviour {
 
 	public void Move()
 	{
-
+		x++;
 	}
 
 	public void Explode()
