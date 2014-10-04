@@ -5,14 +5,14 @@ using System;
 
 public class Enemy : Piece {
 	public int Power;
-	public int Speed;
+	public double Speed;
 	public bool DoesStun;
     private DateTime? _start;
 	// Use this for initialization
 	void Start () {
 		this.Power = 1;
 		this.DoesStun = false;
-		this.Speed = 10000;
+		this.Speed = 1000;
         this._start = null;
 	}
 	
@@ -21,20 +21,28 @@ public class Enemy : Piece {
         Boolean shouldMoveEnemy = false;
         if (_start == null)
             shouldMoveEnemy = true;
-        else if ((DateTime.Now - _start.Value).TotalMilliseconds >= this.Speed)
-            shouldMoveEnemy = true;
+        else
+        {
+            double ms = (DateTime.Now - _start.Value).TotalMilliseconds;
+            if (ms >= this.Speed)
+                shouldMoveEnemy = true;
+        }
         if (shouldMoveEnemy)
         {
             Move();
             _start = DateTime.Now;
+            
         }
 	}
 
 
 	public void Move()
 	{
-		this.X++;
-        transform.Translate((float)1.28, 0, 0);
+        if (this.X < GameEngine.Instance.BoardWidth)
+        {
+            this.X++;
+            transform.Translate((float)1.28, 0, 0);
+        }
 	}
 
 	public void Explode()

@@ -44,20 +44,18 @@ public class GameEngine : MonoBehaviour {
 	void Update () 
 	{	
 		AddEnemy();
-		//System.Threading.Thread.Sleep(1000);
-		foreach (Enemy e in _enemies)
-		{
-			e.Move();
-		}
 	}
 	void AddEnemy() 
 	{
 		if (_enemies.Count < MaxSheepOnBoardAtOnce && _sheepAdded < TotalSheepInLevel)
 		{
-            GameObject eGO = GameObject.Instantiate(SheepPrefab, new Vector3((float)(-9*1.28), 0), Quaternion.identity) as GameObject;
+            int y = GenerateYForEnemy();
+            float transY = y - 3;
+            float transX = -8 + y;
+            GameObject eGO = GameObject.Instantiate(SheepPrefab, new Vector3((float)(transX*1.28), (float)(1.28*transY)), Quaternion.identity) as GameObject;
 			Enemy e = eGO.GetComponent<Enemy>();
 			e.X = 0;
-			e.Y = GenerateYForEnemy();
+			e.Y = y;
 			_enemies.Add(e);
 			_enemyCountPerRow[e.Y]++;
 			_sheepAdded++;
