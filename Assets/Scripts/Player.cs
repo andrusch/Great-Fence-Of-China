@@ -18,7 +18,7 @@ public class Player : Piece {
 	// Use this for initialization
 	void Start () {
 		this.Health = 5;
-
+        this.Y = 2;
 	}
 	
 	// Update is called once per frame
@@ -34,26 +34,32 @@ public class Player : Piece {
         float tempY = 0;
         if (v != 0)
         {
-            tempY += v;
-            tempX += v;
-        }
-        if (tempX != this.X || tempY != this.Y)
-        {
-            if (this.TryMove((int)tempX, (int)tempY))
+            if (!m_isVertAxisInUse)
             {
-                transform.Translate((float)(tempX * XMovementOffset), (float)(tempY * YMovementOffset), 0);
+                m_isVertAxisInUse = true;
+                tempY += v;
+                tempX += v;
+
+
+                if (this.TryMove((int)tempX, (int)tempY))
+                {
+                    transform.Translate((float)(tempX * XMovementOffset), (float)(tempY * YMovementOffset), 0);
+                }
             }
         }
+        else
+            m_isVertAxisInUse = false;
+	}
 
-		
-	}
-	
-	public bool TryMove(int newX, int newY)
-	{
-		this.X = newX;
-		this.Y = newY;
-			return true;
-	}
+    public bool TryMove(int newX, int newY)
+    {
+        if (newY + this.Y < 5 && newY + this.Y > -1)
+        {
+            this.Y += newY;
+            return true;
+        }
+        return false;
+    }
 	
 	public void Move(int newStartX, int newStartY)
 	{
