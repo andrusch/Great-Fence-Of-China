@@ -65,13 +65,13 @@ public class GameEngine : MonoBehaviour {
 			if (this.IsLevelOver())
 			{
 				if (this.DidIWin())
-					GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "You Win! " + this.GetScore().ToString());
+					GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "You Win! " + this.TotalSheepKilledInAllLevels.ToString());
 				else 
-					GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "You Lose! " + this.GetScore().ToString());
+					GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "You Lose! " + this.TotalSheepKilledInAllLevels.ToString());
 			}
 			else
 			{
-				GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "Your Score Is: " + this.GetScore().ToString());
+				GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "Your Score Is: " + this.TotalSheepKilledInAllLevels.ToString());
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public class GameEngine : MonoBehaviour {
 			_sheepAdded++;
 		}
 	}
-	void int GenerateYForEnemy()
+	int GenerateYForEnemy()
 	{
 		int row = 0;
 		int minCount = _enemyCountPerRow[0];
