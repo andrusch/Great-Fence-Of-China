@@ -30,8 +30,8 @@ public class Player : MonoBehaviour {
 
 				float h = Input.GetAxisRaw("Horizontal");
 				float v = Input.GetAxisRaw("Vertical");
-				float tempX = this.StartX;
-				float tempY = this.StartY;
+				float tempX = this.x;
+				float tempY = this.y;
 				if( h != 0.0f)
 				{
 					if(m_isHoriAxisInUse == false)
@@ -61,12 +61,12 @@ public class Player : MonoBehaviour {
 				Vector2 tempVector = new Vector2(tempX,tempY);
 				//Debug.LogError("testing...");
 				
-				if (tempX != this.StartX || tempY != this.StartY)
+				if (tempX != this.x || tempY != this.y)
 				{
-					if (this.TryMove((int)tempX, (int)tempY))
+					/*if (this.TryMove((int)tempX, (int)tempY))
 					{
 						gameObject.transform.position = tempVector;
-					}
+					}*/
 				}
 	}
 	
@@ -74,24 +74,24 @@ public class Player : MonoBehaviour {
 	{		
 		if (this == null)
 			Debug.LogError("CANNOT FIND MY PARENT");
-		else if (GameState.instance.IsPlayerTurn)
+		//else if (.instance.IsPlayerTurn)
+		//{
+			Vector2 targetPos;
+			targetPos = Camera.main.WorldToScreenPoint (new Vector3(this.x, this.y, transform.position.z));
+			//GUI.Box(new Rect(targetPos.x-40, Screen.height- targetPos.y - 50, 75, 20), "Your Move");
+		//}
+		/*else
 		{
 			Vector2 targetPos;
-			targetPos = Camera.main.WorldToScreenPoint (new Vector3(this.StartX, this.StartY, transform.position.z));
-			GUI.Box(new Rect(targetPos.x-40, Screen.height- targetPos.y - 50, 75, 20), "Your Move");
-		}
-		else
-		{
-			Vector2 targetPos;
-			targetPos = Camera.main.WorldToScreenPoint (new Vector3(this.StartX, this.StartY, transform.position.z));
+			targetPos = Camera.main.WorldToScreenPoint (new Vector3(this.x, this.y, transform.position.z));
 			GUI.Box(new Rect(targetPos.x-60, Screen.height- targetPos.y - 50, 115, 20), "Computer's Move");
-		}
+		}*/
 		
 	}
 	
 	public void Move(int newStartX, int newStartY)
 	{
-		GameEngine.Instance.MoveObject (this, newStartX, newStartY);
+		//GameEngine.Instance.MoveObject (this, newStartX, newStartY);
 	}
 	public void TakeDamage()
 	{

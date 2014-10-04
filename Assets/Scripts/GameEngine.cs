@@ -123,8 +123,8 @@ public class GameEngine : MonoBehaviour {
 	{
 		return IsLevelOver() && this._player.Health > 0;
 	}
-	bool TryMove(Object piece, int x, int y)
+	/*bool TryMove(Object piece, int x, int y)
 	{
 		
-	}
+	}*/
 }
