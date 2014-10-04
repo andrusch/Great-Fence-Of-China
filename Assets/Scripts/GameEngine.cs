@@ -9,8 +9,9 @@ public class GameEngine : MonoBehaviour {
 	private Player _player;
 	public int TotalSheep;
 	public int MaxSheepOnBoardAtOnce;
+	public GameObject SheepPrefab;
 	private int _sheepAdded;
-
+	
 	public static GameEngine Instance = null;
 
 	void Awake()
