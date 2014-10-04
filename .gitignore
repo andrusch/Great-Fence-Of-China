@@ -1,15 +1,7 @@
-Library/
 Temp/
-Library/CurrentLayout.dwlt
-*.pidb
-*.csproj
-*.unityproj
-*.sln
-*.userprefs
-[Bb]uilds/
-[Ll]ogs/
-# allow the biped scripts
-!Assets/3rd party Tools/Biped/Library
+Obj/
+UnityGenerated/
+Library/
 #######
 # Git
 ######
@@ -191,6 +183,3 @@ Rails/.idea/
 Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll.meta
 Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
 *.csproj
-
-*.cs.meta
-*.meta
