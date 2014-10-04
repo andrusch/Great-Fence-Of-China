@@ -7,12 +7,14 @@ public class Fence : MonoBehaviour {
 	public int x;
 	public int y;
 	public int HealthIncrease;
+	public int ClickBonus;
 
 	// Use this for initialization
 	void Start () {
 		this.Health = 10;
 		this.Shielding = 0;
 		this.HealthIncrease = 1;
+		this.ClickBonus = 1;
 
 	
 	
@@ -33,8 +35,13 @@ public class Fence : MonoBehaviour {
 	public void Explode()
 	{
 	}
-	public void AddHealth()
+	public void AddHealth(bool addBonus)
 	{
-		this.Health += this.HealthIncrease;
+				this.Health += this.HealthIncrease;
+				if (addBonus){
+						this.Health += this.ClickBonus;
+		}
+
 	}
+
 }
