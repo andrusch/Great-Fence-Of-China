@@ -193,3 +193,4 @@ Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
 *.csproj
 
 *.cs.meta
+*.meta
