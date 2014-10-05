@@ -96,8 +96,8 @@ public class GameEngine : MonoBehaviour {
 		{
             int y = GenerateYForEnemy();
             float transY = y - 3;
-            float transX = -8 + y;
-            GameObject eGO = GameObject.Instantiate(SheepPrefab, new Vector3((float)(transX*1.28), (float)(1.28*transY)), Quaternion.identity) as GameObject;
+            float transX = -16 + y;
+            GameObject eGO = GameObject.Instantiate(SheepPrefab, new Vector3((float)(transX*0.64), (float)(1.28*transY)), Quaternion.identity) as GameObject;
 			Enemy e = eGO.GetComponent<Enemy>();
 			e.X = 0;
 			e.Y = y;
