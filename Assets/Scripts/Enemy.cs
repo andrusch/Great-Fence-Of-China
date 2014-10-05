@@ -11,6 +11,14 @@ public class Enemy : Piece {
     private DateTime? _start;
     private bool _exploded;
     public GameObject explosionPrefab;
+
+	AudioSource bleat1;
+	AudioSource bleat2;
+	AudioSource bleat3;
+	AudioSource splode1;
+	AudioSource splode2;
+	AudioSource splode3;
+
 	// Use this for initialization
 	void Start () {
 		this.Power = 1;
@@ -19,6 +27,15 @@ public class Enemy : Piece {
         this._start = null;
         this._exploded = false;
         _start = DateTime.Now;
+
+		//Grab all the audio source components and identify them
+		AudioSource[] audios = GetComponents<AudioSource>();
+		bleat1 = audios[0];
+		bleat2 = audios[1];
+		bleat3 = audios[2];
+		splode1 = audios[0];
+		splode2 = audios[1];
+		splode3 = audios[2];
 	}
 	
 	// Update is called once per frame
@@ -51,13 +68,20 @@ public class Enemy : Piece {
             {
                 _start = DateTime.Now;
                 GameEngine.Instance.UpdateEnemyLocation(this, this.X, this.Y);
-                float BleatRoll = UnityEngine.Random.Range(0.0f, 1.0f);
-                // 90% chance to bleat
-                if (BleatRoll <= RandomBleatChance)
-                {
-                    audio.Play();
-                }
-            }
+				float BleatRoll = UnityEngine.Random.Range(0.0f,1.0f);
+				// Check against the bleat chance
+				if (BleatRoll <= RandomBleatChance)
+				{
+					//If successful bleat, roll again for random bleat sound
+					BleatRoll = UnityEngine.Random.Range(0.0f,1.0f);
+					if(BleatRoll <= 0.33f)
+						bleat1.Play();
+					else if(BleatRoll <= 0.66f)
+						bleat2.Play();
+					else
+						bleat3.Play();
+				}
+			}
         }
         else
         {
@@ -72,13 +96,25 @@ public class Enemy : Piece {
 	{
         if (!_exploded)
         {
-            // insert sound here
+			_exploded = true;
+			
+			// Play a random explosion sound here
+			float SplodeRoll = UnityEngine.Random.Range(0.0f,1.0f);
+			if(SplodeRoll <= 0.33f)
+				splode1.Play();
+			else if(SplodeRoll <= 0.66f)
+				splode2.Play();
+			else
+				splode3.Play();
 
-            // insert animation here
-            _exploded = true;
-            var splode = transform.position;
-            GameObject.Instantiate(explosionPrefab, splode, Quaternion.identity);
-            GameEngine.Instance.RemoveEnemy(this);
+			// Instantiate the explosion animation here
+			var splode = transform.position;
+			GameObject.Instantiate(explosionPrefab, splode, Quaternion.identity);
+
+			// Instantiate wool ball particle emitter here
+            
+			// Destroy myself
+			GameEngine.Instance.RemoveEnemy(this);
             Destroy(gameObject, 1.0f);
         }
 	}
