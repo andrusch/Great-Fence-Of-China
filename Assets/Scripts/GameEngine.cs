@@ -24,7 +24,7 @@ public class GameEngine : MonoBehaviour {
     public Player _player;
     private int HeartCount;
 	private int SheepCount;
-    private List<GameObject> _hearts;
+    private Stack<GameObject> _hearts;
     public GameObject HeartPrefab;
 	public float HeartStartX;
 	public float HeartStartY;
@@ -59,7 +59,7 @@ public class GameEngine : MonoBehaviour {
         this.TotalSheepKilledInAllLevels = 0;
         this.HeartCount = 0;
 		this.SheepCount = 0;
-        this._hearts = new List<GameObject>();
+        this._hearts = new Stack<GameObject>();
 	}
 	// Update is called once per frame
 	void Update () 
@@ -86,16 +86,28 @@ public class GameEngine : MonoBehaviour {
 	}
     void UpdateHearts()
     {
-		if (this.Player.Health != this.HeartCount)
-		{
-			Debug.Log("Draw Heart");
-			for (int i=0; i< this.Player.Health; i++)
-			{
-				GameObject heart = GameObject.Instantiate(HeartPrefab, new Vector3(HeartStartX - (i * .75f), HeartStartY, -3), Quaternion.identity) as GameObject;
-			}
-			this.HeartCount = this.Player.Health;
-		}
-	}
+        if (this.Player.Health != this.HeartCount)
+        {
+            int diff = this.Player.Health - this.HeartCount;
+            while (diff != 0)
+            {
+                if (diff > 0)
+                {
+                    GameObject heart = GameObject.Instantiate(HeartPrefab, new Vector3(HeartStartX - ((_hearts.Count + 1) * .75f), HeartStartY, -3), Quaternion.identity) as GameObject;
+                    _hearts.Push(heart);
+                    diff--;
+                }
+                else
+                {
+                    GameObject heart = _hearts.Pop();
+                    diff++;
+                    Destroy(heart, 0.45f);
+                }
+            }
+            this.HeartCount = this.Player.Health;
+        }
+    }
+	
 
 	// I have absolutely no idea what I'm doing here, and have currently copy-pasta-ed the code
 	// from last Game Jam into this function that doesn't really do anything.
@@ -186,7 +198,7 @@ public class GameEngine : MonoBehaviour {
         }
         if (shouldDamagePlayer)
         {
-            
+            this.Player.TakeDamage(damageLeftToDeal);
         }
     }
     public void UpdateEnemyLocation(Enemy e, int newX, int newY)
