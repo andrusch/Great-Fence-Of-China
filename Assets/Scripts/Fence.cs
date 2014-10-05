@@ -24,12 +24,19 @@ public class Fence : Piece {
 	void Update () {
 	
 	}
-	public void TakeDamage(int damage)
+	public int TakeDamage(int damage)
 	{
-		if (damage > Shielding) 
-		{
-			this.Health -= damage + Shielding;
-		} 
+        damage -= Shielding;
+        int damageLeft = 0;
+        if (damage > 0)
+        {
+            this.Health -= damage;
+            if (this.Health < 0)
+            {
+                damageLeft = this.Health * -1;
+            }
+        }
+        return damageLeft;
 	}
 	public void UpdateImage()
 	{

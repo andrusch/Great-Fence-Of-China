@@ -17,6 +17,7 @@ public class Enemy : Piece {
 		this.Speed = 1000;
         this._start = null;
         this._exploded = false;
+        _start = DateTime.Now;
 	}
 	
 	// Update is called once per frame
@@ -30,7 +31,7 @@ public class Enemy : Piece {
             if (ms >= this.Speed)
                 shouldMoveEnemy = true;
         }
-        if (shouldMoveEnemy)
+        if (shouldMoveEnemy && GameEngine.Instance.CanEnemyMoveToSpace(this, this.X +1, this.Y))
         {
             Move();
             _start = DateTime.Now;
@@ -42,6 +43,7 @@ public class Enemy : Piece {
 	{
         if (this.X < GameEngine.Instance.BoardWidth)
         {
+            GameEngine.Instance.UpdateEnemyLocation(this, this.X + 1, this.Y);
             this.X++;
             transform.Translate((float)1.28, 0, 0);
 
@@ -58,7 +60,10 @@ public class Enemy : Piece {
             Explode();
         }
 	}
-
+    public Boolean HasExploded
+    {
+        get { return _exploded; }
+    }
 	public void Explode()
 	{
         if (!_exploded)
@@ -66,10 +71,10 @@ public class Enemy : Piece {
             // insert sound here
 
             // insert animation here
-
+            _exploded = true;
             GameEngine.Instance.RemoveEnemy(this);
             Destroy(gameObject, 1.0f);
-            _exploded = true;
+            
         }
 	}
 
