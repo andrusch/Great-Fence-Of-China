@@ -21,7 +21,8 @@ public class GameEngine : MonoBehaviour {
     public int SheepAddedAtOnce;
     public int DelayBetweenSheepAdd;
     DateTime? _whenLastSheepAdded = null;
-
+    private int HeartCount;
+    private List<GameObject> _hearts;
 	void Awake()
 	{
 		if (Instance != null) 
@@ -46,6 +47,8 @@ public class GameEngine : MonoBehaviour {
         this.SheepAddedAtOnce = 1;
         this.DelayBetweenSheepAdd = 3000;
         this.TotalSheepKilledInAllLevels = 0;
+        this.HeartCount = 0;
+        this._hearts = new List<GameObject>();
 	}
 	// Update is called once per frame
 	void Update () 

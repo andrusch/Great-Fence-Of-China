@@ -10,6 +10,7 @@ public class Enemy : Piece {
 	public float RandomBleatChance;
     private DateTime? _start;
     private bool _exploded;
+    public GameObject explosionPrefab;
 	// Use this for initialization
 	void Start () {
 		this.Power = 1;
@@ -74,7 +75,13 @@ public class Enemy : Piece {
             _exploded = true;
             GameEngine.Instance.RemoveEnemy(this);
             Destroy(gameObject, 1.0f);
-            
+
+            var splode = transform.position;
+            GameObject.Instantiate(explosionPrefab, splode, Quaternion.identity);
+
+            Destroy(gameObject, 0.1f);
+            GameEngine.Instance.RemoveEnemy(this);
+            _exploded = true;
         }
 	}
 
