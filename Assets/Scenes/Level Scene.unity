@@ -1361,7 +1361,7 @@ MonoBehaviour:
   SheepCounterStartY: 0
   LevelSheepIncreaseFactor: 2
   DelayBetweenSheepLevelFactor: .699999988
-  SheepSpeedIncreasePerLevelFactor: 3
+  SheepSpeedIncreasePerLevelFactor: 2
   IncreaseFactorSheepOnScreenPerLevel: 2
 --- !u!4 &595780777
 Transform:

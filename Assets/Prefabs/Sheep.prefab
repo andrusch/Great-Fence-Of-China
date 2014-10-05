@@ -397,11 +397,12 @@ MonoBehaviour:
   X: 0
   Y: 0
   Power: 1
-  Speed: 600
+  Speed: 200
   DoesStun: 0
   RandomBleatChance: .100000001
   explosionPrefab: {fileID: 100000, guid: 291a4c951acd24eb3b281742f67cc1ac, type: 2}
   woolsplosionPrefab: {fileID: 100000, guid: 8659e40d35ab6478d8cc0b0bce67b56b, type: 2}
+  SmoothSpeed: 3
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
