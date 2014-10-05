@@ -22,7 +22,8 @@ public class Enemy : Piece {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    void Update()
+    {
         Boolean shouldMoveEnemy = false;
         if (_start == null)
             shouldMoveEnemy = true;
@@ -32,26 +33,20 @@ public class Enemy : Piece {
             if (ms >= this.Speed)
                 shouldMoveEnemy = true;
         }
-        try
+        if (shouldMoveEnemy)
         {
-            if (shouldMoveEnemy)
-            {
-                Move();
-            }
+            Move();
         }
-        catch
-        {
-            Debug.Log(" THE ERROR WAS: " + this.X.ToString());
-        }
-	}
+    }
 
 
 	public void Move()
 	{
-        this.X++;
-        transform.Translate((float)1.28, 0, 0);
-        if (this.X < GameEngine.Instance.BoardWidth)
+        
+        if (this.X + 1 < GameEngine.Instance.BoardWidth)
         {
+            this.X++;
+            transform.Translate((float)1.28, 0, 0);
             if (GameEngine.Instance.CanEnemyMoveToSpace(this, this.X, this.Y))
             {
                 _start = DateTime.Now;

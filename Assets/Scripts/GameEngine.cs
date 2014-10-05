@@ -24,6 +24,7 @@ public class GameEngine : MonoBehaviour {
     public Player Player;
     private int HeartCount;
     private List<GameObject> _hearts;
+    public GameObject HeartPrefab;
 	void Awake()
 	{
 		if (Instance != null) 
@@ -75,10 +76,10 @@ public class GameEngine : MonoBehaviour {
 	}
     void UpdateHearts()
     {
-        if (this.Player.Health != this.HeartCount)
-        {
-			GameObject.Instantiate(HeartPrefab, new Vector3((float)(transX*4.305482), (float)(2.892265*transY)), Quaternion.identity) as GameObject;
-        }
+        //if (this.Player.Health != this.HeartCount)
+        //{
+            // GameObject.Instantiate(HeartPrefab, new Vector3((float)(transX*1.28), (float)(1.28*transY)), Quaternion.identity) as GameObject;
+        //}
     }
 	void AddEnemy() 
 	{
