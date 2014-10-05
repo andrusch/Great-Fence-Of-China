@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: d9d8558f885ec45eb8ad80989967b4bc
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: grass_01
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
