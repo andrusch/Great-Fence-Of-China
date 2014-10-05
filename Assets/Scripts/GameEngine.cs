@@ -64,24 +64,27 @@ public class GameEngine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-        Boolean shouldAddSheep = false;
-        if (_whenLastSheepAdded == null)
-            shouldAddSheep = true;
-        else
+        if (!this.IsLevelOver())
         {
-            double ms = (DateTime.Now - _whenLastSheepAdded.Value).TotalMilliseconds;
-            if (ms >= this.DelayBetweenSheepAdd)
+            Boolean shouldAddSheep = false;
+            if (_whenLastSheepAdded == null)
                 shouldAddSheep = true;
-        }
-        if (shouldAddSheep)
-        {
-            for (int i = 0; i < this.SheepAddedAtOnce; i++)
+            else
             {
-                AddEnemy();
+                double ms = (DateTime.Now - _whenLastSheepAdded.Value).TotalMilliseconds;
+                if (ms >= this.DelayBetweenSheepAdd)
+                    shouldAddSheep = true;
             }
-            _whenLastSheepAdded = DateTime.Now;
+            if (shouldAddSheep)
+            {
+                for (int i = 0; i < this.SheepAddedAtOnce; i++)
+                {
+                    AddEnemy();
+                }
+                _whenLastSheepAdded = DateTime.Now;
+            }
+            UpdateHearts();
         }
-        UpdateHearts();
 		UpdateScore();
 	}
     void UpdateHearts()
@@ -210,9 +213,9 @@ public class GameEngine : MonoBehaviour {
     {
         return _grid[newY, newX] == null;  
     }
-	bool IsLevelOver()
+	public bool IsLevelOver()
 	{
-		return _enemies.Count == 0 && TotalSheepInLevel == _sheepAdded;
+        return (_enemies.Count == 0 && TotalSheepInLevel == _sheepAdded) || (this.Player.Health <= 0);
 	}
     bool DidIWin()
     {

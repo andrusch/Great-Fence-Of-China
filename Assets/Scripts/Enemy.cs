@@ -41,18 +41,21 @@ public class Enemy : Piece {
 	// Update is called once per frame
     void Update()
     {
-        Boolean shouldMoveEnemy = false;
-        if (_start == null)
-            shouldMoveEnemy = true;
-        else
+        if (!GameEngine.Instance.IsLevelOver())
         {
-            double ms = (DateTime.Now - _start.Value).TotalMilliseconds;
-            if (ms >= this.Speed)
+            Boolean shouldMoveEnemy = false;
+            if (_start == null)
                 shouldMoveEnemy = true;
-        }
-        if (shouldMoveEnemy)
-        {
-            Move();
+            else
+            {
+                double ms = (DateTime.Now - _start.Value).TotalMilliseconds;
+                if (ms >= this.Speed)
+                    shouldMoveEnemy = true;
+            }
+            if (shouldMoveEnemy)
+            {
+                Move();
+            }
         }
     }
 
