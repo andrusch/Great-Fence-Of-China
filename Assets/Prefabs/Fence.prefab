@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X: 0
   Y: 0
-  Health: 100
+  Health: 0
   Shielding: 0
   HealthIncrease: 1
   ClickBonus: 1
