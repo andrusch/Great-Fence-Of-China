@@ -17,7 +17,6 @@ public class Player : Piece {
     public float YMovementOffset;
 	// Use this for initialization
 	void Start () {
-		this.Health = 5;
         this.Y = 2;
 	}
 	

@@ -42,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X: 0
   Y: 0
-  Health: 0
+  Health: 3
   xMargin: 1
   yMargin: 1
   xSmooth: 8

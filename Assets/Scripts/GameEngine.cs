@@ -53,8 +53,6 @@ public class GameEngine : MonoBehaviour {
         this.TotalSheepKilledInAllLevels = 0;
         this.HeartCount = 0;
         this._hearts = new List<GameObject>();
-		this.HeartStartX = 0;
-		this.HeartStartY = 0;
 	}
 	// Update is called once per frame
 	void Update () 
@@ -85,7 +83,7 @@ public class GameEngine : MonoBehaviour {
 			Debug.Log("Draw Heart");
 			for (int i=0; i< this.Player.Health; i++)
 			{
-				GameObject heart = GameObject.Instantiate(HeartPrefab, new Vector3(HeartStartX, HeartStartY), Quaternion.identity) as GameObject;
+				GameObject heart = GameObject.Instantiate(HeartPrefab, new Vector3(HeartStartX - (i * .75f), HeartStartY, -3), Quaternion.identity) as GameObject;
 			}
 			this.HeartCount = this.Player.Health;
 		}
