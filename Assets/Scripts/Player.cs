@@ -28,46 +28,42 @@ public class Player : Piece {
 	
 	void FixedUpdate() 
 	{
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        float tempX = 0;
-        float tempY = 0;
-        if (v != 0)
+        if (Input.GetKeyDown("space"))
         {
-            if (!m_isVertAxisInUse)
-            {
-                m_isVertAxisInUse = true;
-                tempY += v;
-                tempX += v;
-
-
-                if (this.TryMove((int)tempX, (int)tempY))
-                {
-                    transform.Translate((float)(tempX * XMovementOffset), (float)(tempY * YMovementOffset), 0);
-                }
-            }
+            BuildFence();
         }
         else
-            m_isVertAxisInUse = false;
-	}
-
-    public bool TryMove(int newX, int newY)
-    {
-        if (newY + this.Y < GameEngine.Instance.BoardHeight && newY + this.Y > -1)
         {
-            this.Y += newY;
-            return true;
+            // see 
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+            float tempX = 0;
+            float tempY = 0;
+            if (v != 0)
+            {
+                if (!m_isVertAxisInUse)
+                {
+                    m_isVertAxisInUse = true;
+                    tempY += v;
+                    tempX += v;
+
+                    if (tempY + this.Y < GameEngine.Instance.BoardHeight && tempY + this.Y > -1)
+                    {
+                        this.Y += (int)tempY;
+                        transform.Translate((float)(tempX * XMovementOffset), (float)(tempY * YMovementOffset), 0);
+                    }
+                }
+            }
+            else
+                m_isVertAxisInUse = false;
         }
-        return false;
+	}
+	public void TakeDamage(int damage)
+	{
+        this.Health -= damage;
+	}
+    public void BuildFence()
+    {
+
     }
-	
-	public void Move(int newStartX, int newStartY)
-	{
-		//GameEngine.Instance.MoveObject (this, newStartX, newStartY);
-	}
-	public void TakeDamage()
-	{
-
-	}
-
 }
