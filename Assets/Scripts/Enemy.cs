@@ -7,6 +7,7 @@ public class Enemy : Piece {
 	public int Power;
 	public double Speed;
 	public bool DoesStun;
+	public float RandomBleatChance;
     private DateTime? _start;
     private bool _exploded;
 	// Use this for initialization
@@ -43,6 +44,14 @@ public class Enemy : Piece {
         {
             this.X++;
             transform.Translate((float)1.28, 0, 0);
+
+			float BleatRoll = UnityEngine.Random.Range(0.0f,1.0f);
+			// 90% chance to bleat
+			if (BleatRoll <= RandomBleatChance)
+			{
+				audio.Play();
+			}
+
         }
         else
         {

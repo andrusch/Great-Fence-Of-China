@@ -104,6 +104,7 @@ MonoBehaviour:
   Power: 0
   Speed: 0
   DoesStun: 0
+  RandomBleatChance: .100000001
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
