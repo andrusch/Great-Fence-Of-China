@@ -88,10 +88,6 @@ public class GameEngine : MonoBehaviour {
         }
         UpdateHearts();
 	}
-    void UpdateLevelDisplay()
-    {
-
-    }
     void GoToNextLevel()
     {
         Level++;
