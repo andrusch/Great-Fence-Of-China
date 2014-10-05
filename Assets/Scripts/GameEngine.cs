@@ -58,7 +58,6 @@ public class GameEngine : MonoBehaviour {
         this.DelayBetweenSheepAdd = 3000;
         this.TotalSheepKilledInAllLevels = 0;
         this.HeartCount = 0;
-		this.SheepCount = 0;
         this._hearts = new Stack<GameObject>();
 	}
 	// Update is called once per frame
@@ -85,7 +84,6 @@ public class GameEngine : MonoBehaviour {
             }
             UpdateHearts();
         }
-		UpdateScore();
 	}
     void UpdateHearts()
     {
@@ -110,18 +108,6 @@ public class GameEngine : MonoBehaviour {
             this.HeartCount = this.Player.Health;
         }
     }
-	
-
-	// I have absolutely no idea what I'm doing here, and have currently copy-pasta-ed the code
-	// from last Game Jam into this function that doesn't really do anything.
-	void UpdateScore()
-	{
-		//if (this.SheepCount != this.TotalSheepKilledInAllLevels)
-		//{
-		//	GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "Sheep: " + this.SheepCount.ToString());
-		//}
-		//this.SheepCount = this.TotalSheepKilledInAllLevels;
-	}
 
 	void AddEnemy() 
 	{
