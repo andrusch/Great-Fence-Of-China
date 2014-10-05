@@ -29,6 +29,8 @@ public class GameEngine : MonoBehaviour {
     public float LevelSheepIncreaseFactor;
     public float DelayBetweenSheepLevelFactor;
     private int _lastFenceTouched = -1;
+	AudioSource levelup;
+
 	
 	void Awake()
 	{
@@ -41,6 +43,7 @@ public class GameEngine : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+
 		this.Level = 1;
 		this.BoardHeight = 5;
 		this.BoardWidth = 10;
@@ -52,6 +55,7 @@ public class GameEngine : MonoBehaviour {
         this.TotalSheepKilledInAllLevels = 0;
         this._heartCount = 0;
         this._hearts = new Stack<GameObject>();
+		levelup = GetComponent<AudioSource>();
 	}
 	// Update is called once per frame
 	void Update () 
@@ -90,6 +94,7 @@ public class GameEngine : MonoBehaviour {
 	}
     void GoToNextLevel()
     {
+		levelup.Play ();
         Level++;
         _sheepAdded = 0;
         TotalSheepInLevel = (int)Math.Round(LevelSheepIncreaseFactor * Level * TotalSheepInLevel);
