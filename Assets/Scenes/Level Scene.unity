@@ -1100,6 +1100,8 @@ MonoBehaviour:
   FencePrefab: {fileID: 100000, guid: 875931ba3e0fd4e33a1ade3441c6df91, type: 2}
   SheepCounterStartX: 0
   SheepCounterStartY: 0
+  LevelSheepIncreaseFactor: 2
+  DelayBetweenSheepLevelFactor: 2
 --- !u!4 &595780777
 Transform:
   m_ObjectHideFlags: 0

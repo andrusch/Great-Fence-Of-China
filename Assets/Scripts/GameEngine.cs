@@ -26,6 +26,8 @@ public class GameEngine : MonoBehaviour {
     public GameObject FencePrefab;
 	public float SheepCounterStartX;
 	public float SheepCounterStartY;
+    public float LevelSheepIncreaseFactor;
+    public float DelayBetweenSheepLevelFactor;
     private int _lastFenceTouched = -1;
 	
 	void Awake()
@@ -54,8 +56,18 @@ public class GameEngine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-        if (!this.IsLevelOver())
+        if (this.IsLevelOver())
         {
+            if (this.DidIWin())
+            {
+                GoToNextLevel();
+            }
+            else
+            {
+                DisplayGameOver();
+            }
+        }
+        else {
             Boolean shouldAddSheep = false;
             if (_whenLastSheepAdded == null)
                 shouldAddSheep = true;
@@ -76,6 +88,21 @@ public class GameEngine : MonoBehaviour {
         }
         UpdateHearts();
 	}
+    void UpdateLevelDisplay()
+    {
+
+    }
+    void GoToNextLevel()
+    {
+        Level++;
+        _sheepAdded = 0;
+        TotalSheepInLevel = (int)Math.Round(LevelSheepIncreaseFactor * Level * TotalSheepInLevel);
+        DelayBetweenSheepAdd = (int)Math.Round(DelayBetweenSheepLevelFactor * Level * DelayBetweenSheepAdd);
+    }
+    void DisplayGameOver()
+    {
+
+    }
     void UpdateHearts()
     {
         if (this.Player.Health != this._heartCount)

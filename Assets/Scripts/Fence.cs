@@ -27,7 +27,7 @@ public class Fence : Piece {
 		overlay3 = overlays[3];
         overlay1.enabled = false;
         overlay2.enabled = false;
-        overlay3.enabled = false;
+        overlay3.enabled = true;
 	}
 	
 	// Update is called once per frame
@@ -56,31 +56,31 @@ public class Fence : Piece {
             overlay0.enabled = true;
 			overlay1.enabled = false;
 			overlay2.enabled = false;
-			overlay3.enabled = false;
+			overlay3.enabled = true;
 		}
 		// Not quite as damaged
 		else if (Health <= Chunk * 2)
 		{
-            overlay0.enabled = false;
-			overlay1.enabled = true;
-			overlay2.enabled = false;
+            overlay0.enabled = true;
+			overlay1.enabled = false;
+			overlay2.enabled = true;
 			overlay3.enabled = false;		
 		}
 		// Lightly scratched
 		else if (Health <= Chunk * 3)
 		{
-            overlay0.enabled = false;
-			overlay1.enabled = false;
-			overlay2.enabled = true;
+            overlay0.enabled = true;
+			overlay1.enabled = true;
+			overlay2.enabled = false;
 			overlay3.enabled = false;		
 		}
 		// Undamaged
 		else
 		{
-            overlay0.enabled = false;
+            overlay0.enabled = true;
 			overlay1.enabled = false;
 			overlay2.enabled = false;
-			overlay3.enabled = true;		
+			overlay3.enabled = false;		
 		}
 	}
 	public void Explode()
