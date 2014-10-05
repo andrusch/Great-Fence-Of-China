@@ -92,7 +92,6 @@ public class Player : Piece {
                             y = (float)(tempY * YMovementOffset);
                             z = 0.0f;
                             transform.Translate(x,y,z);
-                            
                         }
                     }
                 }

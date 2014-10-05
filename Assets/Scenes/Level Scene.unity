@@ -496,8 +496,8 @@ Transform:
   m_PrefabInternal: {fileID: 2377806}
   m_GameObject: {fileID: 231535013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0500000007, y: .959999979, z: -2}
-  m_LocalScale: {x: .0599999987, y: .0799999982, z: .0599999987}
+  m_LocalPosition: {x: .0500000007, y: .944999993, z: -2}
+  m_LocalScale: {x: .0900000036, y: .109999999, z: .0799999982}
   m_Children: []
   m_Father: {fileID: 938337685}
   m_RootOrder: 1
@@ -509,7 +509,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 2377806}
   m_GameObject: {fileID: 231535013}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 650dc640d7b2a4090aa2792e3956f220, type: 3}
+  m_Texture: {fileID: 2800000, guid: 53e16382ad5b6442eb10119a5a251090, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -1348,10 +1348,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalSheepInLevel: 10
-  MaxSheepOnBoardAtOnce: 7
+  MaxSheepOnBoardAtOnce: 10
   SheepPrefab: {fileID: 100000, guid: fffd5a832adce624090d592f540cdcc5, type: 2}
   SheepAddedAtOnce: 1
-  DelayBetweenSheepAdd: 1000
+  DelayBetweenSheepAdd: 600
   _player: {fileID: 583277141}
   HeartPrefab: {fileID: 100000, guid: a5b39debfa77040bd9775b54bace829f, type: 2}
   HeartStartX: 1.00999999
@@ -1361,6 +1361,8 @@ MonoBehaviour:
   SheepCounterStartY: 0
   LevelSheepIncreaseFactor: 2
   DelayBetweenSheepLevelFactor: .699999988
+  SheepSpeedIncreasePerLevelFactor: 3
+  IncreaseFactorSheepOnScreenPerLevel: 2
 --- !u!4 &595780777
 Transform:
   m_ObjectHideFlags: 0

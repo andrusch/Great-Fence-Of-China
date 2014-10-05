@@ -13,6 +13,8 @@ public class Enemy : Piece {
     public GameObject explosionPrefab;
 	public GameObject woolsplosionPrefab;
     private Vector3? targetPosition = null;
+    private int _currentLevel;
+    public float SmoothSpeed = 1f;
 
 	AudioSource bleat1;
 	AudioSource bleat2;
@@ -35,7 +37,7 @@ public class Enemy : Piece {
 		splode1 = audios[3];
 		splode2 = audios[4];
 		splode3 = audios[5];
-
+        _currentLevel = GameEngine.Instance.Level;
 	}
 	
 	// Update is called once per frame
@@ -43,11 +45,17 @@ public class Enemy : Piece {
     {
         if (!GameEngine.Instance.IsLevelOver())
         {
+            if (_currentLevel != GameEngine.Instance.Level)
+            {
+                this.Speed = this.Speed / GameEngine.Instance.SheepSpeedIncreasePerLevelFactor;
+                SmoothSpeed = SmoothSpeed * GameEngine.Instance.SheepSpeedIncreasePerLevelFactor;
+                _currentLevel = GameEngine.Instance.Level;
+            }
             Boolean shouldMoveEnemy = false;
             if (_start == null)
                 shouldMoveEnemy = true;
             else if (targetPosition != null && targetPosition.Value.x > transform.position.x)
-                transform.Translate(Vector3.right * 0.6f * Time.deltaTime);
+                transform.Translate(Vector3.right * SmoothSpeed * Time.deltaTime);
             else
             {
                 double ms = (DateTime.Now - _start.Value).TotalMilliseconds;

@@ -28,6 +28,8 @@ public class GameEngine : MonoBehaviour {
 	public float SheepCounterStartY;
     public float LevelSheepIncreaseFactor;
     public float DelayBetweenSheepLevelFactor;
+    public float SheepSpeedIncreasePerLevelFactor;
+    public float IncreaseFactorSheepOnScreenPerLevel;
     private int _lastFenceTouched = -1;
     private bool _isNewLevel = true;
 	AudioSource levelup;
@@ -102,8 +104,9 @@ public class GameEngine : MonoBehaviour {
         _isNewLevel = true;
         Level++;
         _sheepAdded = 0;
-        TotalSheepInLevel = (int)Math.Round(LevelSheepIncreaseFactor * Level * TotalSheepInLevel);
-        DelayBetweenSheepAdd = (int)Math.Round(DelayBetweenSheepLevelFactor * Level * DelayBetweenSheepAdd);
+        TotalSheepInLevel = (int)Math.Round(LevelSheepIncreaseFactor * TotalSheepInLevel);
+        DelayBetweenSheepAdd = (int)Math.Round(DelayBetweenSheepLevelFactor * DelayBetweenSheepAdd);
+        MaxSheepOnBoardAtOnce = (int)Math.Round(MaxSheepOnBoardAtOnce * IncreaseFactorSheepOnScreenPerLevel);
     }
     void DisplayGameOver()
     {
