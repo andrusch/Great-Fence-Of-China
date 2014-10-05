@@ -11,6 +11,7 @@ public class Enemy : Piece {
     private DateTime? _start;
     private bool _exploded;
     public GameObject explosionPrefab;
+	public GameObject woolsplosionPrefab;
 
 	AudioSource bleat1;
 	AudioSource bleat2;
@@ -112,6 +113,7 @@ public class Enemy : Piece {
 			GameObject.Instantiate(explosionPrefab, splode, Quaternion.identity);
 
 			// Instantiate wool ball particle emitter here
+			GameObject.Instantiate(woolsplosionPrefab, splode, Quaternion.identity);
             
 			// Destroy myself
 			GameEngine.Instance.RemoveEnemy(this);
