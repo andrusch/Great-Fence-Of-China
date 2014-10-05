@@ -14,9 +14,20 @@ public class Player : Piece {
 	private bool m_isVertAxisInUse = false;
     public float XMovementOffset;
     public float YMovementOffset;
+
+	AudioSource build1;
+	AudioSource build2;
+	AudioSource build3;
+	
 	// Use this for initialization
 	void Start () {
         this.Y = 2;
+
+		// Grab all of my audio source components
+		AudioSource[] audios = GetComponents<AudioSource>();
+		build1 = audios[0];
+		build2 = audios[1];
+		build3 = audios[2];
 	}
 	
 	// Update is called once per frame
@@ -68,6 +79,14 @@ public class Player : Piece {
 	}
     public void BuildFence()
     {
+		// Play a random building sound here
+		float BuildRoll = UnityEngine.Random.Range(0.0f,1.0f);
+		if(BuildRoll <= 0.33f)
+			build1.Play();
+		else if(BuildRoll <= 0.66f)
+			build2.Play();
+		else
+			build3.Play();
         GameEngine.Instance.BuildFence(this.Y);
     }
 }
