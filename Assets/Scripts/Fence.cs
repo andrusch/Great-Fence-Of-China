@@ -26,9 +26,12 @@ public class Fence : Piece {
 
 		// Grab all the renderer components of my children
 		SpriteRenderer[] overlays = GetComponentsInChildren<SpriteRenderer>();
-		overlay1 = overlays[0];
-		overlay2 = overlays[1];
-		overlay3 = overlays[2];
+		overlay1 = overlays[1];
+		overlay2 = overlays[2];
+		overlay3 = overlays[3];
+        overlay1.enabled = false;
+        overlay2.enabled = false;
+        overlay3.enabled = false;
 	}
 	
 	// Update is called once per frame
