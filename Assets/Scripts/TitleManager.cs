@@ -6,6 +6,7 @@ public class TitleManager : MonoBehaviour {
 	public string LevelScene;
 	private bool displayButtons = true;
 	public GUISkin Newskin;
+	public GameObject InstructionsBox;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +27,7 @@ public class TitleManager : MonoBehaviour {
 			// display an area for buttons
 			//75,75,400,400,     default 20,20,600,600
 			GUILayout.BeginArea (new Rect (Screen.width*0.4f, 0, Screen.width*0.6f, Screen.height));
-			GUILayout.Space (Screen.height*0.75f);
+			GUILayout.Space (Screen.height*0.4f);
 			//GUI.BeginGroup (new Rect (0, 0, 300, 198));
 			//GUI.Box (new Rect (0, 0, 300, 198), backgroundSplash);
 			//GUILayout.Label ("Load a scene and fade in a looped Audio Clip");
