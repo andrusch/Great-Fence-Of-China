@@ -23,12 +23,16 @@ public class GameEngine : MonoBehaviour {
     DateTime? _whenLastSheepAdded = null;
     public Player _player;
     private int HeartCount;
+	private int SheepCount;
     private List<GameObject> _hearts;
     public GameObject HeartPrefab;
 	public float HeartStartX;
 	public float HeartStartY;
     public GameObject FencePrefab;
-
+	public GameObject SheepIconPrefab;
+	public float SheepCounterStartX;
+	public float SheepCounterStartY;
+	
 	void Awake()
 	{
 		if (Instance != null) 
@@ -54,6 +58,7 @@ public class GameEngine : MonoBehaviour {
         this.DelayBetweenSheepAdd = 3000;
         this.TotalSheepKilledInAllLevels = 0;
         this.HeartCount = 0;
+		this.SheepCount = 0;
         this._hearts = new List<GameObject>();
 	}
 	// Update is called once per frame
@@ -77,6 +82,7 @@ public class GameEngine : MonoBehaviour {
             _whenLastSheepAdded = DateTime.Now;
         }
         UpdateHearts();
+		UpdateScore();
 	}
     void UpdateHearts()
     {
@@ -90,6 +96,18 @@ public class GameEngine : MonoBehaviour {
 			this.HeartCount = this.Player.Health;
 		}
 	}
+
+	// I have absolutely no idea what I'm doing here, and have currently copy-pasta-ed the code
+	// from last Game Jam into this function that doesn't really do anything.
+	void UpdateScore()
+	{
+		//if (this.SheepCount != this.TotalSheepKilledInAllLevels)
+		//{
+		//	GUI.Box(new Rect(Screen.width /2 - 100, 10, 170, 20),  "Sheep: " + this.SheepCount.ToString());
+		//}
+		//this.SheepCount = this.TotalSheepKilledInAllLevels;
+	}
+
 	void AddEnemy() 
 	{
 		if (_enemies.Count < MaxSheepOnBoardAtOnce && _sheepAdded < TotalSheepInLevel)
