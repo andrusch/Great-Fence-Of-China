@@ -1088,21 +1088,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e584097854740464baedc5eadfde84db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalSheepInLevel: 0
-  TotalSheepKilledInAllLevels: 0
-  MaxSheepOnBoardAtOnce: 0
+  TotalSheepInLevel: 10
+  MaxSheepOnBoardAtOnce: 7
   SheepPrefab: {fileID: 100000, guid: fffd5a832adce624090d592f540cdcc5, type: 2}
-  Level: 0
-  BoardHeight: 0
-  BoardWidth: 0
-  SheepAddedAtOnce: 0
-  DelayBetweenSheepAdd: 0
+  SheepAddedAtOnce: 1
+  DelayBetweenSheepAdd: 1000
   _player: {fileID: 583277141}
   HeartPrefab: {fileID: 100000, guid: a5b39debfa77040bd9775b54bace829f, type: 2}
-  HeartStartX: 6.0999999
-  HeartStartY: 4.5
+  HeartStartX: 7
+  HeartStartY: 4.69999981
   FencePrefab: {fileID: 100000, guid: 875931ba3e0fd4e33a1ade3441c6df91, type: 2}
-  SheepIconPrefab: {fileID: 0}
   SheepCounterStartX: 0
   SheepCounterStartY: 0
 --- !u!4 &595780777

@@ -5,33 +5,28 @@ using System;
 
 public class GameEngine : MonoBehaviour {
 	private Enemy[,] _grid;
-	
+    public int TotalSheepInLevel;
 	private Stack<Fence>[] _fencePieces;
 	private List<Enemy> _enemies;
-	public int TotalSheepInLevel;
-	public int TotalSheepKilledInAllLevels;
 	public int MaxSheepOnBoardAtOnce;
 	public GameObject SheepPrefab;
 	private int _sheepAdded;
-	public int Level;
-	public int BoardHeight;
-	public int BoardWidth;
 	public static GameEngine Instance = null;
 	private int[] _enemyCountPerRow;
     public int SheepAddedAtOnce;
     public int DelayBetweenSheepAdd;
     DateTime? _whenLastSheepAdded = null;
     public Player _player;
-    private int HeartCount;
-	private int SheepCount;
+    private int _heartCount;
+	private int _sheepCount;
     private Stack<GameObject> _hearts;
     public GameObject HeartPrefab;
 	public float HeartStartX;
 	public float HeartStartY;
     public GameObject FencePrefab;
-	public GameObject SheepIconPrefab;
 	public float SheepCounterStartX;
 	public float SheepCounterStartY;
+    private int _lastFenceTouched = -1;
 	
 	void Awake()
 	{
@@ -50,14 +45,10 @@ public class GameEngine : MonoBehaviour {
 		this._fencePieces = new Stack<Fence>[this.BoardHeight];
 		this._enemies = new List<Enemy>();
 		this._sheepAdded = 0;
-		this.TotalSheepInLevel = 10 * this.Level;
-		this.MaxSheepOnBoardAtOnce = 3;
 		this._grid = new Enemy[this.BoardHeight, this.BoardWidth];
 		this._enemyCountPerRow = new int[this.BoardHeight];
-        this.SheepAddedAtOnce = 1;
-        this.DelayBetweenSheepAdd = 3000;
         this.TotalSheepKilledInAllLevels = 0;
-        this.HeartCount = 0;
+        this._heartCount = 0;
         this._hearts = new Stack<GameObject>();
 	}
 	// Update is called once per frame
@@ -82,14 +73,14 @@ public class GameEngine : MonoBehaviour {
                 }
                 _whenLastSheepAdded = DateTime.Now;
             }
-            UpdateHearts();
         }
+        UpdateHearts();
 	}
     void UpdateHearts()
     {
-        if (this.Player.Health != this.HeartCount)
+        if (this.Player.Health != this._heartCount)
         {
-            int diff = this.Player.Health - this.HeartCount;
+            int diff = this.Player.Health - this._heartCount;
             while (diff != 0)
             {
                 if (diff > 0)
@@ -105,7 +96,7 @@ public class GameEngine : MonoBehaviour {
                     Destroy(heart, 0.45f);
                 }
             }
-            this.HeartCount = this.Player.Health;
+            this._heartCount = this.Player.Health;
         }
     }
 
@@ -214,6 +205,9 @@ public class GameEngine : MonoBehaviour {
         if (_fencePieces[y] == null)
         {
             _fencePieces[y] = new Stack<Fence>();
+        }
+        if (_fencePieces[y].Count == 0)
+        {
             GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * transY)), Quaternion.identity) as GameObject;
             Fence e = eGO.GetComponent<Fence>();
             _fencePieces[y].Push(e);
@@ -225,7 +219,7 @@ public class GameEngine : MonoBehaviour {
             Fence e = eGO.GetComponent<Fence>();
             _fencePieces[y].Push(e);
         }
-        _fencePieces[y].Peek().Health++;
+        _fencePieces[y].Peek().AddHealth(_lastFenceTouched != -1 && _lastFenceTouched == y);
     }
 	public Player Player
 	{
@@ -237,4 +231,10 @@ public class GameEngine : MonoBehaviour {
 		}
 
 	}
+    
+    public int TotalSheepKilledInAllLevels { get; private set; }
+    public int Level { get; private set; }
+    public int BoardHeight { get; private set; }
+    public int BoardWidth { get; private set; }
+
 }

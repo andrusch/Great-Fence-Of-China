@@ -396,8 +396,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X: 0
   Y: 0
-  Power: 0
-  Speed: 0
+  Power: 1
+  Speed: 1000
   DoesStun: 0
   RandomBleatChance: .100000001
   explosionPrefab: {fileID: 100000, guid: 291a4c951acd24eb3b281742f67cc1ac, type: 2}

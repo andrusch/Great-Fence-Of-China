@@ -7,25 +7,21 @@ public class Fence : Piece {
 	public int HealthIncrease;
 	public int ClickBonus;
 	public int OverlayCount;
-	public int Chunk;
+	private int Chunk;
 	public int MaxHealth;
 
+    Renderer overlay0;
 	Renderer overlay1;
 	Renderer overlay2;
 	Renderer overlay3;
 
 	// Use this for initialization
 	void Start () {
-		this.Health = 0;
-		this.Shielding = 0;
-		this.HealthIncrease = 1;
-		this.ClickBonus = 1;
-		this.OverlayCount = 3;
-		this.Chunk = this.Health / (OverlayCount + 1);
-		this.MaxHealth = 5;
+		this.Chunk = this.MaxHealth / (OverlayCount + 1);
 
 		// Grab all the renderer components of my children
 		SpriteRenderer[] overlays = GetComponentsInChildren<SpriteRenderer>();
+        overlay0 = overlays[0];
 		overlay1 = overlays[1];
 		overlay2 = overlays[2];
 		overlay3 = overlays[3];
@@ -36,7 +32,7 @@ public class Fence : Piece {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        UpdateImage();
 	}
 	public int TakeDamage(int damage)
 	{
@@ -57,30 +53,34 @@ public class Fence : Piece {
 		// Most damaged state
 		if (Health <= Chunk)
 		{
+            overlay0.enabled = true;
 			overlay1.enabled = false;
 			overlay2.enabled = false;
-			overlay3.enabled = true;
+			overlay3.enabled = false;
 		}
 		// Not quite as damaged
 		else if (Health <= Chunk * 2)
 		{
-			overlay1.enabled = false;
-			overlay2.enabled = true;
+            overlay0.enabled = false;
+			overlay1.enabled = true;
+			overlay2.enabled = false;
 			overlay3.enabled = false;		
 		}
 		// Lightly scratched
 		else if (Health <= Chunk * 3)
 		{
-			overlay1.enabled = true;
-			overlay2.enabled = false;
+            overlay0.enabled = false;
+			overlay1.enabled = false;
+			overlay2.enabled = true;
 			overlay3.enabled = false;		
 		}
 		// Undamaged
 		else
 		{
+            overlay0.enabled = false;
 			overlay1.enabled = false;
 			overlay2.enabled = false;
-			overlay3.enabled = false;		
+			overlay3.enabled = true;		
 		}
 	}
 	public void Explode()
@@ -94,7 +94,7 @@ public class Fence : Piece {
 						this.Health += this.ClickBonus;
 
 		}
-		UpdateImage ();
+		
 	}
 
 }

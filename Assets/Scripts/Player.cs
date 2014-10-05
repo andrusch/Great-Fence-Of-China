@@ -11,7 +11,6 @@ public class Player : Piece {
 	public float ySmooth = 8f;		// How smoothly the camera catches up with it's target movement in the y axis.
 	public Vector2 maxXAndY;		// The maximum x and y coordinates the camera can have.
 	public Vector2 minXAndY;		// The minimum x and y coordinates the camera can have.
-	private bool m_isHoriAxisInUse = false;
 	private bool m_isVertAxisInUse = false;
     public float XMovementOffset;
     public float YMovementOffset;
@@ -35,8 +34,6 @@ public class Player : Piece {
             }
             else
             {
-                // see 
-                float h = Input.GetAxisRaw("Horizontal");
                 float v = Input.GetAxisRaw("Vertical");
                 float tempX = 0;
                 float tempY = 0;
@@ -51,7 +48,12 @@ public class Player : Piece {
                         if (tempY + this.Y < GameEngine.Instance.BoardHeight && tempY + this.Y > -1)
                         {
                             this.Y += (int)tempY;
-                            transform.Translate((float)(tempX * XMovementOffset), (float)(tempY * YMovementOffset), 0);
+                            float x, y, z;
+                            x = (float)(tempX * XMovementOffset);
+                            y = (float)(tempY * YMovementOffset);
+                            z = 0.0f;
+                            transform.Translate(x,y,z);
+                            
                         }
                     }
                 }

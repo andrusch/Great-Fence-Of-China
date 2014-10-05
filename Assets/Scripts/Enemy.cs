@@ -21,9 +21,6 @@ public class Enemy : Piece {
 
 	// Use this for initialization
 	void Start () {
-		this.Power = 1;
-		this.DoesStun = false;
-		this.Speed = 1000;
         this._start = null;
         this._exploded = false;
         _start = DateTime.Now;
