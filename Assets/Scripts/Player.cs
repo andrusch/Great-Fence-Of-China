@@ -63,6 +63,6 @@ public class Player : Piece {
 	}
     public void BuildFence()
     {
-        //GameEngine.Instance.BuildFence(this.Y);
+        GameEngine.Instance.BuildFence(this.Y);
     }
 }

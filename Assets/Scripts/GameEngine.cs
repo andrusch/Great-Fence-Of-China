@@ -27,6 +27,8 @@ public class GameEngine : MonoBehaviour {
     public GameObject HeartPrefab;
 	public float HeartStartX;
 	public float HeartStartY;
+    public GameObject FencePrefab;
+
 	void Awake()
 	{
 		if (Instance != null) 
@@ -182,11 +184,30 @@ public class GameEngine : MonoBehaviour {
 	{
 		return _enemies.Count == 0 && TotalSheepInLevel == _sheepAdded;
 	}
-	bool DidIWin()
-	{
-		//return IsLevelOver() && this._player.Health > 0;
-        return IsLevelOver();
-	}
+    bool DidIWin()
+    {
+        return IsLevelOver() && this.Player.Health > 0;
+    }
+    public void BuildFence(int y)
+    {
+        float transY = y - 3;
+        float transX = y + 4;
+        if (_fencePieces[y] == null)
+        {
+            _fencePieces[y] = new Stack<Fence>();
+            GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * transY)), Quaternion.identity) as GameObject;
+            Fence e = eGO.GetComponent<Fence>();
+            _fencePieces[y].Push(e);
+        }
+        Fence f = _fencePieces[y].Peek();
+        if (f.Health == f.MaxHealth)
+        {
+            GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * transY)), Quaternion.identity) as GameObject;
+            Fence e = eGO.GetComponent<Fence>();
+            _fencePieces[y].Push(e);
+        }
+        _fencePieces[y].Peek().Health++;
+    }
 	public Player Player
 	{
 		get
