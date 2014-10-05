@@ -195,7 +195,10 @@ public class GameEngine : MonoBehaviour {
                     Fence f = _fencePieces[y].Peek();
                     damageLeftToDeal = f.TakeDamage(damageLeftToDeal);
                     if (f.Health <= 0)
+                    {
                         _fencePieces[y].Pop();
+                        Destroy(f.gameObject, 0.45f);
+                    }
                 }
             }
         }
@@ -229,20 +232,23 @@ public class GameEngine : MonoBehaviour {
         {
             _fencePieces[y] = new Stack<Fence>();
         }
-        if (_fencePieces[y].Count == 0)
+        Stack<Fence> fencesInRow = _fencePieces[y];
+        if (fencesInRow.Count == 0)
         {
             GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * transY)), Quaternion.identity) as GameObject;
             Fence e = eGO.GetComponent<Fence>();
-            _fencePieces[y].Push(e);
+            fencesInRow.Push(e);
         }
-        Fence f = _fencePieces[y].Peek();
+        Fence f = fencesInRow.Peek();
         if (f.Health == f.MaxHealth)
         {
-            GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * (transY + _fencePieces[y].Count))), Quaternion.identity) as GameObject;
+            GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * (transY + fencesInRow.Count))), Quaternion.identity) as GameObject;
             Fence e = eGO.GetComponent<Fence>();
-            _fencePieces[y].Push(e);
+            fencesInRow.Push(e);
+            f = e;
         }
-        _fencePieces[y].Peek().AddHealth(_lastFenceTouched != -1 && _lastFenceTouched == y);
+
+        f.AddHealth(_lastFenceTouched != -1 && _lastFenceTouched == y);
     }
 	public Player Player
 	{

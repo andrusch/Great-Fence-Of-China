@@ -62,12 +62,12 @@ public class Enemy : Piece {
         
         if (this.X + 1 < GameEngine.Instance.BoardWidth)
         {
-            this.X++;
-            transform.Translate((float)1.28, 0, 0);
-            if (GameEngine.Instance.CanEnemyMoveToSpace(this, this.X, this.Y))
-            {
+            if (GameEngine.Instance.CanEnemyMoveToSpace(this, this.X + 1, this.Y))
+            {   
+                transform.Translate((float)1.28, 0, 0);
                 _start = DateTime.Now;
-                GameEngine.Instance.UpdateEnemyLocation(this, this.X, this.Y);
+                GameEngine.Instance.UpdateEnemyLocation(this, this.X+1, this.Y);
+                this.X++;
 				float BleatRoll = UnityEngine.Random.Range(0.0f,1.0f);
 				// Check against the bleat chance
 				if (BleatRoll <= RandomBleatChance)
