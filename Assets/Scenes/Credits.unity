@@ -352,7 +352,7 @@ Transform:
   m_LocalScale: {x: .400000006, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 1634048871}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!132 &439598986
 GUIText:
   m_ObjectHideFlags: 0
@@ -958,6 +958,7 @@ Transform:
   - {fileID: 856299948}
   - {fileID: 1650542797}
   - {fileID: 1868143512}
+  - {fileID: 1796070666}
   - {fileID: 439598985}
   m_Father: {fileID: 1502929246}
   m_RootOrder: 3
@@ -1059,6 +1060,57 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!1 &1796070665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1796070666}
+  - 132: {fileID: 1796070667}
+  m_Layer: 0
+  m_Name: CT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1796070666
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796070665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .5, y: .275000006, z: 4}
+  m_LocalScale: {x: .400000006, y: .25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1634048871}
+  m_RootOrder: 8
+--- !u!132 &1796070667
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796070665}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: CT Ortman - Programming
+  m_Anchor: 4
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 12800000, guid: 34cbd894c693c4e5c907bea76c21ee0f, type: 3}
+  m_Material: {fileID: 0}
+  m_FontSize: 20
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &1868143511
 GameObject:
   m_ObjectHideFlags: 0
