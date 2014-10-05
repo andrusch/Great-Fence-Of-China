@@ -74,11 +74,11 @@ MonoBehaviour:
   m_button:
     m_Name: button
     m_Normal:
-      m_Background: {fileID: 11006, guid: 0000000000000000e000000000000000, type: 0}
-      m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
+      m_Background: {fileID: 2800000, guid: b28e474d4b5af45e881715f10873dae1, type: 3}
+      m_TextColor: {r: 1, g: 0, b: 0, a: 1}
     m_Hover:
-      m_Background: {fileID: 11003, guid: 0000000000000000e000000000000000, type: 0}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+      m_Background: {fileID: 2800000, guid: 7c0e0910f4b6d4259882f66daa9b50a6, type: 3}
+      m_TextColor: {r: .725490212, g: 0, b: 0, a: 1}
     m_Active:
       m_Background: {fileID: 11002, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
