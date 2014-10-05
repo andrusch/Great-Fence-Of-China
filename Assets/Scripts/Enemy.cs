@@ -33,9 +33,9 @@ public class Enemy : Piece {
 		bleat1 = audios[0];
 		bleat2 = audios[1];
 		bleat3 = audios[2];
-		splode1 = audios[0];
-		splode2 = audios[1];
-		splode3 = audios[2];
+		splode1 = audios[3];
+		splode2 = audios[4];
+		splode3 = audios[5];
 	}
 	
 	// Update is called once per frame
@@ -115,7 +115,7 @@ public class Enemy : Piece {
             
 			// Destroy myself
 			GameEngine.Instance.RemoveEnemy(this);
-            Destroy(gameObject, 1.0f);
+            Destroy(gameObject, 0.45f);
         }
 	}
 
