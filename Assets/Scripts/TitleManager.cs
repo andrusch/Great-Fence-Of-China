@@ -52,6 +52,13 @@ public class TitleManager : MonoBehaviour {
 				this.displayButtons = false;
 			}
 
+			GUILayout.Space (Screen.height*0.05f);
+			
+			if (GUILayout.Button ("Quit", GUILayout.Height(Screen.height*0.075f), GUILayout.Width(Screen.width*0.4f))) 
+			{ 
+				Application.Quit(); 
+				this.displayButtons = false;
+			}
 
 			// I can't remember what anything below here does
 			GUILayout.Space (Screen.height/20);
