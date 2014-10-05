@@ -22,7 +22,7 @@ public class Fence : Piece {
 		this.ClickBonus = 1;
 		this.OverlayCount = 3;
 		this.Chunk = this.Health / (OverlayCount + 1);
-		this.MaxHealth = 100;
+		this.MaxHealth = 5;
 
 		// Grab all the renderer components of my children
 		SpriteRenderer[] overlays = GetComponentsInChildren<SpriteRenderer>();
