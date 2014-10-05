@@ -77,7 +77,7 @@ public class GameEngine : MonoBehaviour {
     {
         if (this.Player.Health != this.HeartCount)
         {
-            // GameObject.Instantiate(HeartPrefab, new Vector3((float)(transX*1.28), (float)(1.28*transY)), Quaternion.identity) as GameObject;
+			GameObject.Instantiate(HeartPrefab, new Vector3((float)(transX*4.305482), (float)(2.892265*transY)), Quaternion.identity) as GameObject;
         }
     }
 	void AddEnemy() 
