@@ -108,7 +108,7 @@ public class GameEngine : MonoBehaviour {
             {
                 if (diff > 0)
                 {
-                    GameObject heart = GameObject.Instantiate(HeartPrefab, new Vector3(HeartStartX - ((_hearts.Count + 1) * .75f), HeartStartY, -3), Quaternion.identity) as GameObject;
+                    GameObject heart = GameObject.Instantiate(HeartPrefab, new Vector3(HeartStartX - ((_hearts.Count + 1) * .05f), HeartStartY, -3), Quaternion.identity) as GameObject;
                     _hearts.Push(heart);
                     diff--;
                 }
