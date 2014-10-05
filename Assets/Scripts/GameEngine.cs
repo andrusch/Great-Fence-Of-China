@@ -21,10 +21,12 @@ public class GameEngine : MonoBehaviour {
     public int SheepAddedAtOnce;
     public int DelayBetweenSheepAdd;
     DateTime? _whenLastSheepAdded = null;
-    public Player Player;
+    public Player _player;
     private int HeartCount;
     private List<GameObject> _hearts;
     public GameObject HeartPrefab;
+	public float HeartStartX;
+	public float HeartStartY;
 	void Awake()
 	{
 		if (Instance != null) 
@@ -51,6 +53,8 @@ public class GameEngine : MonoBehaviour {
         this.TotalSheepKilledInAllLevels = 0;
         this.HeartCount = 0;
         this._hearts = new List<GameObject>();
+		this.HeartStartX = 0;
+		this.HeartStartY = 0;
 	}
 	// Update is called once per frame
 	void Update () 
@@ -76,11 +80,16 @@ public class GameEngine : MonoBehaviour {
 	}
     void UpdateHearts()
     {
-        //if (this.Player.Health != this.HeartCount)
-        //{
-            // GameObject.Instantiate(HeartPrefab, new Vector3((float)(transX*1.28), (float)(1.28*transY)), Quaternion.identity) as GameObject;
-        //}
-    }
+		if (this.Player.Health != this.HeartCount)
+		{
+			Debug.Log("Draw Heart");
+			for (int i=0; i< this.Player.Health; i++)
+			{
+				GameObject heart = GameObject.Instantiate(HeartPrefab, new Vector3(HeartStartX, HeartStartY), Quaternion.identity) as GameObject;
+			}
+			this.HeartCount = this.Player.Health;
+		}
+	}
 	void AddEnemy() 
 	{
 		if (_enemies.Count < MaxSheepOnBoardAtOnce && _sheepAdded < TotalSheepInLevel)
@@ -179,5 +188,15 @@ public class GameEngine : MonoBehaviour {
 	{
 		//return IsLevelOver() && this._player.Health > 0;
         return IsLevelOver();
+	}
+	public Player Player
+	{
+		get
+		{
+			if (this._player == null)
+				this._player = GameObject.Find ("Player").GetComponent<Player>();
+			return this._player;
+		}
+
 	}
 }
