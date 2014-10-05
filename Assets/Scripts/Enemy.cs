@@ -46,6 +46,8 @@ public class Enemy : Piece {
             Boolean shouldMoveEnemy = false;
             if (_start == null)
                 shouldMoveEnemy = true;
+            else if (targetPosition != null && targetPosition.Value.x > transform.position.x)
+                transform.Translate(Vector3.right * 0.6f * Time.deltaTime);
             else
             {
                 double ms = (DateTime.Now - _start.Value).TotalMilliseconds;
@@ -54,11 +56,6 @@ public class Enemy : Piece {
             }
             if (shouldMoveEnemy)
             {
-                if (targetPosition == null)
-                    Move();
-                else if (targetPosition.Value.x > transform.position.x)
-                    transform.Translate(Vector3.right * 0.6f * Time.deltaTime);
-                else
                     Move();
             }
         }
