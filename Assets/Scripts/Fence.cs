@@ -9,6 +9,11 @@ public class Fence : Piece {
 	public int OverlayCount;
 	public int Chunk;
 	public int MaxHealth;
+
+	Renderer overlay1;
+	Renderer overlay2;
+	Renderer overlay3;
+
 	// Use this for initialization
 	void Start () {
 		this.Health = 0;
@@ -18,6 +23,12 @@ public class Fence : Piece {
 		this.OverlayCount = 3;
 		this.Chunk = this.Health / (OverlayCount + 1);
 		this.MaxHealth = 100;
+
+		// Grab all the renderer components of my children
+		SpriteRenderer[] overlays = GetComponentsInChildren<SpriteRenderer>();
+		overlay1 = overlays[1];
+		overlay2 = overlays[2];
+		overlay3 = overlays[3];
 	}
 	
 	// Update is called once per frame
@@ -40,21 +51,33 @@ public class Fence : Piece {
 	}
 	public void UpdateImage()
 	{
-		if (Health <= MaxHealth * 1)
+		// Most damaged state
+		if (Health <= Chunk)
 		{
-			//set base fence image
+			overlay1.enabled = false;
+			overlay2.enabled = false;
+			overlay3.enabled = true;
 		}
-		else if (Health <= MaxHealth * 2)
+		// Not quite as damaged
+		else if (Health <= Chunk * 2)
 		{
-			//set broken1 fence image
+			overlay1.enabled = false;
+			overlay2.enabled = true;
+			overlay3.enabled = false;		
 		}
-		else if (Health <= MaxHealth * 3)
+		// Lightly scratched
+		else if (Health <= Chunk * 3)
 		{
-			//set broken2 fence image
+			overlay1.enabled = true;
+			overlay2.enabled = false;
+			overlay3.enabled = false;		
 		}
-		else if (Health <= MaxHealth * 4)
+		// Undamaged
+		else
 		{
-			//set broken3 fence image
+			overlay1.enabled = false;
+			overlay2.enabled = false;
+			overlay3.enabled = false;		
 		}
 	}
 	public void Explode()
