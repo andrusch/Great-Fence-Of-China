@@ -1360,7 +1360,7 @@ MonoBehaviour:
   SheepCounterStartX: 0
   SheepCounterStartY: 0
   LevelSheepIncreaseFactor: 2
-  DelayBetweenSheepLevelFactor: 2
+  DelayBetweenSheepLevelFactor: .699999988
 --- !u!4 &595780777
 Transform:
   m_ObjectHideFlags: 0

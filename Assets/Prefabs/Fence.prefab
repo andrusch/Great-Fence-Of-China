@@ -134,7 +134,7 @@ MonoBehaviour:
   HealthIncrease: 1
   ClickBonus: 1
   OverlayCount: 3
-  MaxHealth: 12
+  MaxHealth: 4
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
