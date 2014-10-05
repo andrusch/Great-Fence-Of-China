@@ -110,7 +110,7 @@ public class GameEngine : MonoBehaviour {
     }
     void DisplayGameOver()
     {
-
+		Application.LoadLevel ("Game Over");
     }
     void UpdateHearts()
     {
