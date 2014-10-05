@@ -8,10 +8,13 @@ public class GameEngine : MonoBehaviour {
 	
 	private List<Fence> _fencePieces;
 	private List<Enemy> _enemies;
+	private List<GameObject> _hearts;
 	public int TotalSheepInLevel;
 	public int TotalSheepKilledInAllLevels;
 	public int MaxSheepOnBoardAtOnce;
 	public GameObject SheepPrefab;
+	public GameObject HeartPrefab;
+
 	private int _sheepAdded;
 	public int Level;
 	public int BoardHeight;
@@ -20,7 +23,10 @@ public class GameEngine : MonoBehaviour {
 	private int[] _enemyCountPerRow;
     public int SheepAddedAtOnce;
     public int DelayBetweenSheepAdd;
+	public int HeartCount;
     DateTime? _whenLastSheepAdded = null;
+	public Player Player;
+
 
 	void Awake()
 	{
@@ -45,10 +51,13 @@ public class GameEngine : MonoBehaviour {
 		this._enemyCountPerRow = new int[this.BoardHeight];
         this.SheepAddedAtOnce = 1;
         this.DelayBetweenSheepAdd = 3000;
+		this.HeartCount = 0;
+		this._hearts = new List<GameObject> ();
 	}
 	// Update is called once per frame
 	void Update () 
 	{
+
         Boolean shouldAddSheep = false;
         if (_whenLastSheepAdded == null)
             shouldAddSheep = true;
@@ -66,7 +75,22 @@ public class GameEngine : MonoBehaviour {
             }
             _whenLastSheepAdded = DateTime.Now;
         }
+		UpdateHearts ();
 	}
+	void UpdateHearts()
+	{
+		if (this.Player != null) 
+		{
+			if (this.Player.Health != this.HeartCount)
+			{
+				//draw hearts
+				//
+				GameObject eGO = GameObject.Instantiate(HeartPrefab, new Vector3((float)(transX*1.28), (float)(1.28*transY)), Quaternion.identity) as GameObject;
+
+			}
+				}
+
+		}
 	void AddEnemy() 
 	{
 		if (_enemies.Count < MaxSheepOnBoardAtOnce && _sheepAdded < TotalSheepInLevel)
