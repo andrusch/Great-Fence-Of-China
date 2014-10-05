@@ -221,7 +221,7 @@ public class GameEngine : MonoBehaviour {
         Fence f = _fencePieces[y].Peek();
         if (f.Health == f.MaxHealth)
         {
-            GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * transY)), Quaternion.identity) as GameObject;
+            GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * (transY + _fencePieces[y].Count))), Quaternion.identity) as GameObject;
             Fence e = eGO.GetComponent<Fence>();
             _fencePieces[y].Push(e);
         }
