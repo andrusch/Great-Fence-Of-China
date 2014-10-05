@@ -14,10 +14,17 @@ public class Player : Piece {
 	private bool m_isVertAxisInUse = false;
     public float XMovementOffset;
     public float YMovementOffset;
+    public int MaxHammerDisplayTime;
 
 	AudioSource build1;
 	AudioSource build2;
 	AudioSource build3;
+
+    SpriteRenderer mainRenderer;
+    SpriteRenderer hammerRenderer;
+    int hammerDisplayed = 0;
+
+    public bool displayHammer = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -28,11 +35,32 @@ public class Player : Piece {
 		build1 = audios[0];
 		build2 = audios[1];
 		build3 = audios[2];
+
+        SpriteRenderer[] overlays = GetComponentsInChildren<SpriteRenderer>();
+        mainRenderer = overlays[0];
+        hammerRenderer = overlays[1];
+        hammerRenderer.enabled = false;
+        MaxHammerDisplayTime = 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	 
+        if (displayHammer)
+        {
+            hammerRenderer.enabled = true;
+            mainRenderer.enabled = false;
+            hammerDisplayed++;
+            if (hammerDisplayed > MaxHammerDisplayTime)
+            {
+                hammerDisplayed = 0;
+                displayHammer = false;
+            }
+        }
+        else
+        {
+            mainRenderer.enabled = true;
+            hammerRenderer.enabled = false;
+        }
 	}
 	
 	void FixedUpdate() 
@@ -87,6 +115,7 @@ public class Player : Piece {
 			build2.Play();
 		else
 			build3.Play();
+        displayHammer = true;
         GameEngine.Instance.BuildFence(this.Y);
     }
 }
