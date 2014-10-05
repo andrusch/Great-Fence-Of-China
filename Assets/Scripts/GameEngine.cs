@@ -29,6 +29,7 @@ public class GameEngine : MonoBehaviour {
     public float LevelSheepIncreaseFactor;
     public float DelayBetweenSheepLevelFactor;
     private int _lastFenceTouched = -1;
+    private bool _isNewLevel = true;
 	AudioSource levelup;
 
 	
@@ -73,8 +74,11 @@ public class GameEngine : MonoBehaviour {
         }
         else {
             Boolean shouldAddSheep = false;
-            if (_whenLastSheepAdded == null)
+            if (_whenLastSheepAdded == null || _isNewLevel)
+            {
                 shouldAddSheep = true;
+                _isNewLevel = false;
+            }
             else
             {
                 double ms = (DateTime.Now - _whenLastSheepAdded.Value).TotalMilliseconds;
@@ -95,6 +99,7 @@ public class GameEngine : MonoBehaviour {
     void GoToNextLevel()
     {
 		levelup.Play ();
+        _isNewLevel = true;
         Level++;
         _sheepAdded = 0;
         TotalSheepInLevel = (int)Math.Round(LevelSheepIncreaseFactor * Level * TotalSheepInLevel);
