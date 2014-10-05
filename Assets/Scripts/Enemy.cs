@@ -8,6 +8,7 @@ public class Enemy : Piece {
 	public double Speed;
 	public bool DoesStun;
 	public float RandomBleatChance;
+	public GameObject explosionPrefab;
     private DateTime? _start;
     private bool _exploded;
 	// Use this for initialization
@@ -66,9 +67,11 @@ public class Enemy : Piece {
             // insert sound here
 
             // insert animation here
+			var splode = transform.position;
+			GameObject.Instantiate(explosionPrefab,splode,Quaternion.identity);
 
+			Destroy(gameObject, 0.1f);
             GameEngine.Instance.RemoveEnemy(this);
-            Destroy(gameObject, 1.0f);
             _exploded = true;
         }
 	}
