@@ -257,6 +257,8 @@ MonoBehaviour:
   minXAndY: {x: 0, y: 0}
   XMovementOffset: .639999986
   YMovementOffset: 1.27999997
+  MaxHammerDisplayTime: 3
+  displayHammer: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

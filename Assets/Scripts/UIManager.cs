@@ -15,9 +15,9 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Update the player's score
-		UITextBox.text = ": " + game.TotalSheepKilledInAllLevels.ToString();
+		UITextBox.text = ": " + GameEngine.Instance.TotalSheepKilledInAllLevels.ToString();
 
 		// Update the current level
-		LevelTextBox.text = "Level " + game.Level.ToString();
+		LevelTextBox.text = "Level " + GameEngine.Instance.Level.ToString();
 	}
 }

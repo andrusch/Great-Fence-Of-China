@@ -33,6 +33,7 @@ public class GameEngine : MonoBehaviour {
     private int _lastFenceTouched = -1;
     private bool _isNewLevel = true;
 	AudioSource levelup;
+    private System.Random _random = new System.Random();
 
 	
 	void Awake()
@@ -155,25 +156,7 @@ public class GameEngine : MonoBehaviour {
 	}
 	int GenerateYForEnemy()
 	{
-		int row = 0;
-		int minCount = _enemyCountPerRow[0];
-		if (minCount == 0)
-			return minCount;
-		for (int i =1; i<this.BoardHeight; i++)
-		{
-			if (_enemyCountPerRow[i] == 0)
-			{
-				row = i;
-				minCount = _enemyCountPerRow[i];
-				break;
-			}				
-			if (minCount > _enemyCountPerRow[i])		
-			{
-				row = i;
-				minCount = _enemyCountPerRow[i];				
-			}
-		}
-		return row;
+		return _random.Next(0,5);
 	}
 	
 	public void RemoveEnemy(Enemy e)
@@ -260,8 +243,14 @@ public class GameEngine : MonoBehaviour {
             fencesInRow.Push(e);
             f = e;
         }
-
-        f.AddHealth(_lastFenceTouched != -1 && _lastFenceTouched == y);
+        while (f.AddHealth(_lastFenceTouched != -1 && _lastFenceTouched == y) > 0)
+        {
+            GameObject eGO = GameObject.Instantiate(FencePrefab, new Vector3((float)(transX * 0.64), (float)(1.28 * (transY + fencesInRow.Count))), Quaternion.identity) as GameObject;
+            Fence e = eGO.GetComponent<Fence>();
+            fencesInRow.Push(e);
+            f = e;
+        }
+        _lastFenceTouched = y;
     }
 	public Player Player
 	{

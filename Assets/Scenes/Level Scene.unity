@@ -116,7 +116,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 2257dffce85e249ce83471ada9b7e483, type: 2}
       propertyPath: game
       value: 
-      objectReference: {fileID: 595780776}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2257dffce85e249ce83471ada9b7e483, type: 2}
   m_RootGameObject: {fileID: 938337684}
@@ -521,6 +521,54 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!1001 &247306401
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+      propertyPath: LevelSheepIncreaseFactor
+      value: 1.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+  m_RootGameObject: {fileID: 1143837103}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &258652372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1102,7 @@ MonoBehaviour:
   minXAndY: {x: 0, y: 0}
   XMovementOffset: .639999986
   YMovementOffset: 1.27999997
-  MaxHammerDisplayTime: 0
+  MaxHammerDisplayTime: 3
   displayHammer: 0
 --- !u!212 &583277142
 SpriteRenderer:
@@ -1319,120 +1367,6 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d9d8558f885ec45eb8ad80989967b4bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &595780775
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 595780777}
-  - 114: {fileID: 595780776}
-  - 82: {fileID: 595780778}
-  m_Layer: 0
-  m_Name: GameEngine
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &595780776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 595780775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e584097854740464baedc5eadfde84db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TotalSheepInLevel: 10
-  MaxSheepOnBoardAtOnce: 10
-  SheepPrefab: {fileID: 100000, guid: fffd5a832adce624090d592f540cdcc5, type: 2}
-  SheepAddedAtOnce: 1
-  DelayBetweenSheepAdd: 600
-  _player: {fileID: 583277141}
-  HeartPrefab: {fileID: 100000, guid: a5b39debfa77040bd9775b54bace829f, type: 2}
-  HeartStartX: 1.00999999
-  HeartStartY: .959999979
-  FencePrefab: {fileID: 100000, guid: 875931ba3e0fd4e33a1ade3441c6df91, type: 2}
-  SheepCounterStartX: 0
-  SheepCounterStartY: 0
-  LevelSheepIncreaseFactor: 2
-  DelayBetweenSheepLevelFactor: .699999988
-  SheepSpeedIncreasePerLevelFactor: 2
-  IncreaseFactorSheepOnScreenPerLevel: 2
---- !u!4 &595780777
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 595780775}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
---- !u!82 &595780778
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 595780775}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 1a093c990848d294789ffa667aca264c, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!1 &667575236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +1805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UITextBox: {fileID: 1377733762}
   LevelTextBox: {fileID: 699911177}
-  game: {fileID: 595780776}
+  game: {fileID: 0}
 --- !u!1 &941383037
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,6 +2154,122 @@ Transform:
   m_Children: []
   m_Father: {fileID: 667575237}
   m_RootOrder: 0
+--- !u!1 &1143837103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+  m_PrefabInternal: {fileID: 247306401}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1143837106}
+  - 114: {fileID: 1143837105}
+  - 82: {fileID: 1143837104}
+  m_Layer: 0
+  m_Name: GameEngine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1143837104
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: 03175507d75a0724a8437770c6221d2b,
+    type: 2}
+  m_PrefabInternal: {fileID: 247306401}
+  m_GameObject: {fileID: 1143837103}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 1a093c990848d294789ffa667aca264c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &1143837105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 03175507d75a0724a8437770c6221d2b,
+    type: 2}
+  m_PrefabInternal: {fileID: 247306401}
+  m_GameObject: {fileID: 1143837103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e584097854740464baedc5eadfde84db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalSheepInLevel: 10
+  MaxSheepOnBoardAtOnce: 10
+  SheepPrefab: {fileID: 100000, guid: fffd5a832adce624090d592f540cdcc5, type: 2}
+  SheepAddedAtOnce: 1
+  DelayBetweenSheepAdd: 600
+  _player: {fileID: 0}
+  HeartPrefab: {fileID: 100000, guid: a5b39debfa77040bd9775b54bace829f, type: 2}
+  HeartStartX: 1.00999999
+  HeartStartY: .959999979
+  FencePrefab: {fileID: 100000, guid: 875931ba3e0fd4e33a1ade3441c6df91, type: 2}
+  SheepCounterStartX: 0
+  SheepCounterStartY: 0
+  LevelSheepIncreaseFactor: 1.5
+  DelayBetweenSheepLevelFactor: .699999988
+  SheepSpeedIncreasePerLevelFactor: 2
+  IncreaseFactorSheepOnScreenPerLevel: 2
+--- !u!4 &1143837106
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 03175507d75a0724a8437770c6221d2b, type: 2}
+  m_PrefabInternal: {fileID: 247306401}
+  m_GameObject: {fileID: 1143837103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &1166191543
 GameObject:
   m_ObjectHideFlags: 0

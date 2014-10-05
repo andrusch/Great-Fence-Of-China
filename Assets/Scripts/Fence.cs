@@ -87,14 +87,13 @@ public class Fence : Piece {
 	{
 		// add animation for the explosion
 	}
-	public void AddHealth(bool addBonus)
-	{
-				this.Health += this.HealthIncrease;
-				if (addBonus){
-						this.Health += this.ClickBonus;
-
-		}
-		
-	}
-
+    public int AddHealth(bool addBonus)
+    {
+        this.Health += this.HealthIncrease;
+        if (addBonus)
+        {
+            this.Health += this.ClickBonus;
+        }
+        return this.Health - this.MaxHealth;
+    }
 }
