@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GameEngine : MonoBehaviour {
 	private Piece[,] _grid;
@@ -17,6 +18,9 @@ public class GameEngine : MonoBehaviour {
 	public int BoardWidth;
 	public static GameEngine Instance = null;
 	private int[] _enemyCountPerRow;
+    public int SheepAddedAtOnce;
+    public int DelayBetweenSheepAdd;
+    DateTime? _whenLastSheepAdded = null;
 
 	void Awake()
 	{
@@ -36,14 +40,32 @@ public class GameEngine : MonoBehaviour {
 		this._enemies = new List<Enemy>();
 		this._sheepAdded = 0;
 		this.TotalSheepInLevel = 10 * this.Level;
-		this.MaxSheepOnBoardAtOnce = 1;
+		this.MaxSheepOnBoardAtOnce = 3;
 		this._grid = new Piece[this.BoardHeight, this.BoardWidth];
 		this._enemyCountPerRow = new int[this.BoardHeight];
+        this.SheepAddedAtOnce = 1;
+        this.DelayBetweenSheepAdd = 3000;
 	}
 	// Update is called once per frame
 	void Update () 
-	{	
-		AddEnemy();
+	{
+        Boolean shouldAddSheep = false;
+        if (_whenLastSheepAdded == null)
+            shouldAddSheep = true;
+        else
+        {
+            double ms = (DateTime.Now - _whenLastSheepAdded.Value).TotalMilliseconds;
+            if (ms >= this.DelayBetweenSheepAdd)
+                shouldAddSheep = true;
+        }
+        if (shouldAddSheep)
+        {
+            for (int i = 0; i < this.SheepAddedAtOnce; i++)
+            {
+                AddEnemy();
+            }
+            _whenLastSheepAdded = DateTime.Now;
+        }
 	}
 	void AddEnemy() 
 	{
@@ -84,7 +106,7 @@ public class GameEngine : MonoBehaviour {
 		return row;
 	}
 	
-	void RemoveEnemy()
+	public void RemoveEnemy(Enemy e)
 	{
 		
 	

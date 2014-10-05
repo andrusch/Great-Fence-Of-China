@@ -8,12 +8,14 @@ public class Enemy : Piece {
 	public double Speed;
 	public bool DoesStun;
     private DateTime? _start;
+    private bool _exploded;
 	// Use this for initialization
 	void Start () {
 		this.Power = 1;
 		this.DoesStun = false;
 		this.Speed = 1000;
         this._start = null;
+        this._exploded = false;
 	}
 	
 	// Update is called once per frame
@@ -31,7 +33,6 @@ public class Enemy : Piece {
         {
             Move();
             _start = DateTime.Now;
-            
         }
 	}
 
@@ -43,11 +44,24 @@ public class Enemy : Piece {
             this.X++;
             transform.Translate((float)1.28, 0, 0);
         }
+        else
+        {
+            Explode();
+        }
 	}
 
 	public void Explode()
 	{
+        if (!_exploded)
+        {
+            // insert sound here
 
+            // insert animation here
+
+            GameEngine.Instance.RemoveEnemy(this);
+            Destroy(gameObject, 1.0f);
+            _exploded = true;
+        }
 	}
 
 	
