@@ -12,6 +12,7 @@ public class Enemy : Piece {
     private bool _exploded;
     public GameObject explosionPrefab;
 	public GameObject woolsplosionPrefab;
+    private Vector3? targetPosition = null;
 
 	AudioSource bleat1;
 	AudioSource bleat2;
@@ -34,6 +35,7 @@ public class Enemy : Piece {
 		splode1 = audios[3];
 		splode2 = audios[4];
 		splode3 = audios[5];
+
 	}
 	
 	// Update is called once per frame
@@ -52,7 +54,12 @@ public class Enemy : Piece {
             }
             if (shouldMoveEnemy)
             {
-                Move();
+                if (targetPosition == null)
+                    Move();
+                else if (targetPosition.Value.x > transform.position.x)
+                    transform.Translate(Vector3.right * 0.6f * Time.deltaTime);
+                else
+                    Move();
             }
         }
     }
@@ -65,7 +72,8 @@ public class Enemy : Piece {
         {
             if (GameEngine.Instance.CanEnemyMoveToSpace(this, this.X + 1, this.Y))
             {   
-                transform.Translate((float)1.28, 0, 0);
+                targetPosition = new Vector3((float)(transform.position.x + 1.28f), 0, 0);
+
                 _start = DateTime.Now;
                 GameEngine.Instance.UpdateEnemyLocation(this, this.X+1, this.Y);
                 this.X++;
