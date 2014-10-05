@@ -32,29 +32,37 @@ public class Enemy : Piece {
             if (ms >= this.Speed)
                 shouldMoveEnemy = true;
         }
-        if (shouldMoveEnemy && GameEngine.Instance.CanEnemyMoveToSpace(this, this.X +1, this.Y))
+        try
         {
-            Move();
-            _start = DateTime.Now;
+            if (shouldMoveEnemy)
+            {
+                Move();
+            }
+        }
+        catch
+        {
+            Debug.Log(" THE ERROR WAS: " + this.X.ToString());
         }
 	}
 
 
 	public void Move()
 	{
+        this.X++;
+        transform.Translate((float)1.28, 0, 0);
         if (this.X < GameEngine.Instance.BoardWidth)
         {
-            GameEngine.Instance.UpdateEnemyLocation(this, this.X + 1, this.Y);
-            this.X++;
-            transform.Translate((float)1.28, 0, 0);
-
-			float BleatRoll = UnityEngine.Random.Range(0.0f,1.0f);
-			// 90% chance to bleat
-			if (BleatRoll <= RandomBleatChance)
-			{
-				audio.Play();
-			}
-
+            if (GameEngine.Instance.CanEnemyMoveToSpace(this, this.X, this.Y))
+            {
+                _start = DateTime.Now;
+                GameEngine.Instance.UpdateEnemyLocation(this, this.X, this.Y);
+                float BleatRoll = UnityEngine.Random.Range(0.0f, 1.0f);
+                // 90% chance to bleat
+                if (BleatRoll <= RandomBleatChance)
+                {
+                    audio.Play();
+                }
+            }
         }
         else
         {
@@ -73,15 +81,10 @@ public class Enemy : Piece {
 
             // insert animation here
             _exploded = true;
-            GameEngine.Instance.RemoveEnemy(this);
-            Destroy(gameObject, 1.0f);
-
             var splode = transform.position;
             GameObject.Instantiate(explosionPrefab, splode, Quaternion.identity);
-
-            Destroy(gameObject, 0.1f);
             GameEngine.Instance.RemoveEnemy(this);
-            _exploded = true;
+            Destroy(gameObject, 1.0f);
         }
 	}
 

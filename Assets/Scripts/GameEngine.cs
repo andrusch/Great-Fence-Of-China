@@ -21,6 +21,7 @@ public class GameEngine : MonoBehaviour {
     public int SheepAddedAtOnce;
     public int DelayBetweenSheepAdd;
     DateTime? _whenLastSheepAdded = null;
+    public Player Player;
     private int HeartCount;
     private List<GameObject> _hearts;
 	void Awake()
@@ -36,7 +37,7 @@ public class GameEngine : MonoBehaviour {
 	{
 		this.Level = 1;
 		this.BoardHeight = 5;
-		this.BoardWidth = 9;
+		this.BoardWidth = 10;
 		this._fencePieces = new Stack<Fence>[this.BoardHeight];
 		this._enemies = new List<Enemy>();
 		this._sheepAdded = 0;
@@ -70,14 +71,22 @@ public class GameEngine : MonoBehaviour {
             }
             _whenLastSheepAdded = DateTime.Now;
         }
+        UpdateHearts();
 	}
+    void UpdateHearts()
+    {
+        if (this.Player.Health != this.HeartCount)
+        {
+            // GameObject.Instantiate(HeartPrefab, new Vector3((float)(transX*1.28), (float)(1.28*transY)), Quaternion.identity) as GameObject;
+        }
+    }
 	void AddEnemy() 
 	{
 		if (_enemies.Count < MaxSheepOnBoardAtOnce && _sheepAdded < TotalSheepInLevel)
 		{
             int y = GenerateYForEnemy();
             float transY = y - 3;
-            float transX = -9 + y;
+            float transX = -8 + y;
             GameObject eGO = GameObject.Instantiate(SheepPrefab, new Vector3((float)(transX*1.28), (float)(1.28*transY)), Quaternion.identity) as GameObject;
 			Enemy e = eGO.GetComponent<Enemy>();
 			e.X = 0;
