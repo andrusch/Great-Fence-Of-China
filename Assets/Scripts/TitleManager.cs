@@ -53,12 +53,14 @@ public class TitleManager : MonoBehaviour {
 			}
 
 			GUILayout.Space (Screen.height*0.05f);
-			
-			if (GUILayout.Button ("Quit", GUILayout.Height(Screen.height*0.075f), GUILayout.Width(Screen.width*0.4f))) 
-			{ 
-				Application.Quit(); 
-				this.displayButtons = false;
-			}
+            if (Application.platform != RuntimePlatform.OSXWebPlayer && Application.platform != RuntimePlatform.WindowsWebPlayer)
+            {
+                if (GUILayout.Button("Quit", GUILayout.Height(Screen.height * 0.075f), GUILayout.Width(Screen.width * 0.4f)))
+                {
+                    Application.Quit();
+                    this.displayButtons = false;
+                }
+            }
 
 			// I can't remember what anything below here does
 			GUILayout.Space (Screen.height/20);

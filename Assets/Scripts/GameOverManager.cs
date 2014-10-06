@@ -6,6 +6,7 @@ public class GameOverManager : MonoBehaviour {
 	public string TitleScene;
 	private bool displayButtons = true;
 	public GUISkin Newskin;
+    public GUIText LevelAndSheepKilledGUIDText;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class GameOverManager : MonoBehaviour {
 	{
 		GUI.skin = Newskin;
 
+        LevelAndSheepKilledGUIDText.text = System.String.Format("Level: {0}  Killed: {1}", GameEngine.Instance.Level, GameEngine.Instance.TotalSheepKilledInAllLevels);
 		if (this.displayButtons)
 		{
 			// display an area for buttons

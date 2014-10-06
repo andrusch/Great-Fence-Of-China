@@ -132,7 +132,7 @@ MonoBehaviour:
   Health: 0
   Shielding: 0
   HealthIncrease: 1
-  ClickBonus: 3
+  ClickBonus: 1
   OverlayCount: 3
   MaxHealth: 4
 --- !u!212 &21200000
